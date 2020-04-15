@@ -1,0 +1,4 @@
+*.json
+/alina
+/__pycache__
+/.vscode
