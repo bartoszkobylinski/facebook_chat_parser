@@ -132,8 +132,6 @@ class FacebookChat:
         frequency_counter = Counter(messages)
         return frequency_counter.most_common(word_len)
 
-# def get_facebook_statistic(list_file)
-
 
 start = time.time()
 b = FacebookChat()
@@ -158,14 +156,3 @@ b.get_participants_of_chat()
 end = time.time()
 result = end - start
 print(result)
-
-'''
-# print(f"Total messages is: {total_messages}")
-# print(f"Total characters is: {total_characters}")
-# print(f"Total words used in chat is: {total_words}")
-# print(f"Word is used so many times: {total_frequency_particular_word}")
-# print(f"Total photos number are: {total_photos_number}")
-# print(f"Total gifs send on chat: {total_gifs_number}")
-#
-# print(a)
-'''

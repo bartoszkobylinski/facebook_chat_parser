@@ -2,6 +2,7 @@
 import unittest
 
 from facebook_chat import FacebookChat
+from participant import Participant
 
 
 class TestFacebookChat(unittest.TestCase):
@@ -42,7 +43,7 @@ class TestFacebookChat(unittest.TestCase):
                          self.fb_chat.get_chat_total_characters_number())
         self.assertNotEqual(14,
                             self.fb_chat.get_chat_total_characters_number())
-
+    '''
     def test_get_chat_total_words_number(self):
         self.assertEqual(362337, self.fb_chat.get_chat_total_words_number())
         self.assertNotEqual(152, self.fb_chat.get_chat_total_words_number())
@@ -53,10 +54,21 @@ class TestFacebookChat(unittest.TestCase):
         self.assertEqual(85, self.fb_chat.find_chat_word_frequency('kurwa'))
         self.assertEqual(632, self.fb_chat.find_chat_word_frequency('dobrze'))
         self.assertEqual(102, self.fb_chat.find_chat_word_frequency('tata'))
-    
+    '''
     def test_determine_chat_word_frequency_by_word_length(self):
         self.assertEqual([('nie', 12151), ('ale', 4567), ('jak', 4214)],
                          self.fb_chat.determine_chat_word_frequency_by_word_length(3))
+
+
+class TestParticipant(unittest.TestCase):
+
+    def setUp(self):
+        self.participant = (Participant("Weronika Karpińska"))
+
+    def test_get_messages(self):
+        test_chat = FacebookChat('nie_ten_watek_1.json')
+        self.assertEqual('blabal',
+                         self.participant.get_messages(test_chat.messages))
 
 
 if __name__ == '__main__':
