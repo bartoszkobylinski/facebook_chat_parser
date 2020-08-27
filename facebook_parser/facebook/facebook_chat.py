@@ -1,8 +1,6 @@
 """
 File with FacebookChat class and all its function
 """
-import json
-import time
 from collections import Counter
 
 fb_file_list = ['nie_ten_watek_1.json',
@@ -12,23 +10,29 @@ fb_file_list = ['nie_ten_watek_1.json',
                 'nie_ten_watek_5.json']
 
 
-class FacebookChat:
+class FacebookChat1:
     """
     class containing information get from file containg facebook messanger chat
     """
     def __init__(self,
                  file: str = None,
-                 total_chat_messages_number=0,
-                 total_chat_characters_number=0,
-                 total_chat_photos_number=0,
-                 total_chat_gifs_number=0,
-                 total_reactions_number=0
+                 total_fb_chat_participants_number=0,
+                 total_fb_chat_messages_number=0,
+                 total_fb_chat_characters_number=0,
+                 total_fb_chat_photos_number=0,
+                 total_fb_chat_links_number=0,
+                 total_fb_chat_gifs_number=0,
+                 total_fb_chat_reactions_number=0,
                  ):
         self._file = file
-        self._total_chat_messages_number = total_chat_messages_number
-        self._total_chat_characters_number = total_chat_characters_number
-        self._total_chat_photos_number = total_chat_photos_number
-        self._total_chat_gifs_number = total_chat_gifs_number
+        self._total_fb_chat_participants_number = (
+            total_fb_chat_participants_number)
+        self._total_fb_chat_messages_number = total_fb_chat_messages_number
+        self._total_fb_chat_characters_number = total_fb_chat_characters_number
+        self._total_fb_chat_photos_number = total_fb_chat_photos_number
+        self._total_fb_chat_links_number = total_fb_chat_links_number
+        self._total_fb_chat_gifs_number = total_fb_chat_gifs_number
+        self._total_fb_chat_reactions_number = total_fb_chat_reactions_number
         self._chat_messages = None
 
     def __str__(self):
@@ -43,8 +47,7 @@ class FacebookChat:
         if self._chat_messages:
             return self._chat_messages
         else:
-            self._chat_messages = self._parse_data_from_file()['messages']
-            return self._chat_messages
+            return self.file
 
     @property
     def file(self):
@@ -53,23 +56,39 @@ class FacebookChat:
     @file.setter
     def file(self, file):
         self._file = file
-        self._total_chat_gifs_number += self.get_chat_total_gifs_number()
-        self._total_chat_messages_number += len(self.messages)
-        self._total_chat_characters_number += (
-            self.get_chat_total_characters_number())
-        self._total_chat_photos_number += self.get_chat_total_photos_number()
+        self._total_fb_chat_participants_number = (
+            self.get_fb_chat_participants_number())
+        self._total_fb_chat_gifs_number += (
+            self.get_fb_chat_total_gifs_number())
+        self._total_fb_chat_messages_number += (
+            len(self.messages.get('messages', '')))
+        self._total_fb_chat_characters_number += (
+            self.get_fb_chat_total_characters_number())
+        self._total_fb_chat_photos_number += (
+            self.get_fb_chat_total_photos_number())
+        self._total_fb_chat_links_number += (
+            self.get_fb_chat_total_links_number())
+        self._total_fb_chat_reactions_number += (
+            self.get_fb_chat_reactions_number()
+        )
         self._chat_messages = None
-
+    '''
     def _parse_data_from_file(self):
         with open(self.file, encoding='latin-1') as facebook_chat_file:
             facebook_chat_data = json.load(facebook_chat_file)
         return facebook_chat_data
-
+    '''
     def set_content(self):
         return self._chat_messages
 
-    def get_participants_of_chat(self):
-        fb_chat_data = self._parse_data_from_file()
+    def get_fb_chat_title(self):
+        return self.correct_string_decoding(self.messages.get('title', ''))
+
+    def get_fb_chat_participants_number(self):
+        return len(self.messages.get('participants', ''))
+
+    def get_fb_chat_participants(self):
+        fb_chat_data = self.messages
         participants = []
         for participant in fb_chat_data['participants']:
             participant = self.correct_string_decoding(participant['name'])
@@ -79,33 +98,53 @@ class FacebookChat:
     def correct_string_decoding(self, string):
         return string.encode('iso-8859-1').decode('utf-8)')
 
-    def get_chat_total_photos_number(self):
+    def get_fb_chat_total_photos_number(self):
         photos_counter = 0
-        for photo in self.messages:
+        for photo in self.messages.get('messages', ''):
             photo_length = len(photo.get('photos', ''))
             photos_counter += photo_length
         return photos_counter
 
-    def get_chat_total_gifs_number(self):
+    def get_fb_chat_total_gifs_number(self):
         gifs_counter = 0
-        for gif in self.messages:
+        for gif in self.messages.get('messages', ''):
             gif_length = len(gif.get('gifs', ''))
             gifs_counter += gif_length
         return gifs_counter
 
-    def get_chat_total_characters_number(self):
+    def get_fb_chat_total_characters_number(self):
         total_characters_number = 0
-        for message in self.messages:
+        for message in self.messages.get('messages', ''):
             total_characters_number += len(
                 self.correct_string_decoding(message.get('content', '')))
         return total_characters_number
 
-    def get_chat_total_words_number(self):
+    def get_fb_chat_total_links_number(self):
+        total_links_number = 0
+        for message in self.messages.get('messages', ''):
+            if message.get('share', ''):
+                if message['share'].get('link', ''):
+                    total_links_number += 1
+            else:
+                continue
+        return total_links_number
+
+    def get_fb_chat_reactions_number(self):
+        total_reactions_number = 0
+        for message in self.messages.get('messages', ''):
+            if message.get('reactions', ''):
+                total_reactions_number += len(message.get('reactions', ''))
+        return total_reactions_number
+
+    def get_fb_chat_total_words_number(self):
         total_words_number = 0
-        for message in self.messages:
+        for message in self.messages.get('messages', ''):
             message = message.get('content', ' ').split()
             total_words_number += len(message)
         return total_words_number
+
+    def get_fb_chat_total_messages_number(self):
+        return len(self.messages.get('messages', ''))
 
     def find_chat_word_frequency(self, word: str):
         messages_string = ''
@@ -133,6 +172,7 @@ class FacebookChat:
         return frequency_counter.most_common(word_len)
 
 
+'''
 start = time.time()
 b = FacebookChat()
 
@@ -156,3 +196,4 @@ b.get_participants_of_chat()
 end = time.time()
 result = end - start
 print(result)
+'''
