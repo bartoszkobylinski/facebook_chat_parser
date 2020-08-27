@@ -3,14 +3,7 @@ File with FacebookChat class and all its function
 """
 from collections import Counter
 
-fb_file_list = ['nie_ten_watek_1.json',
-                'nie_ten_watek_2.json',
-                'nie_ten_watek_3.json',
-                'nie_ten_watek_4.json',
-                'nie_ten_watek_5.json']
-
-
-class FacebookChat1:
+class FacebookChat:
     """
     class containing information get from file containg facebook messanger chat
     """
@@ -72,12 +65,7 @@ class FacebookChat1:
             self.get_fb_chat_reactions_number()
         )
         self._chat_messages = None
-    '''
-    def _parse_data_from_file(self):
-        with open(self.file, encoding='latin-1') as facebook_chat_file:
-            facebook_chat_data = json.load(facebook_chat_file)
-        return facebook_chat_data
-    '''
+
     def set_content(self):
         return self._chat_messages
 
@@ -101,15 +89,13 @@ class FacebookChat1:
     def get_fb_chat_total_photos_number(self):
         photos_counter = 0
         for photo in self.messages.get('messages', ''):
-            photo_length = len(photo.get('photos', ''))
-            photos_counter += photo_length
+            photos_counter += len(photo.get('photos', ''))
         return photos_counter
 
     def get_fb_chat_total_gifs_number(self):
         gifs_counter = 0
         for gif in self.messages.get('messages', ''):
-            gif_length = len(gif.get('gifs', ''))
-            gifs_counter += gif_length
+            gifs_counter += len(gif.get('gifs', ''))
         return gifs_counter
 
     def get_fb_chat_total_characters_number(self):
@@ -170,30 +156,3 @@ class FacebookChat1:
             messages += message
         frequency_counter = Counter(messages)
         return frequency_counter.most_common(word_len)
-
-
-'''
-start = time.time()
-b = FacebookChat()
-
-
-for file in fb_file_list:
-    b.file = file
-    b.messages
-    content = b.set_content()
-    # print(b)
-    # print(f"That is len of content {len(content)}")
-    participant = b.get_participants_of_chat()
-    # print(f"That is your participant {participant}")
-
-freq_of_word = b.find_chat_word_frequency('')
-# print(freq_of_word)
-freq = b.determine_chat_word_frequency_by_word_length(7)
-# print(freq)
-
-b.get_participants_of_chat()
-
-end = time.time()
-result = end - start
-print(result)
-'''
