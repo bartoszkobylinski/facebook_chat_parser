@@ -83,8 +83,28 @@ class FacebookChat:
             participants.append(participant)
         return participants
 
+    def fb_chat_correct_messages_decoding(self):
+        return self.set_content()
+
+        """
+        for message in self.messages:
+            print(message.get('sender_name',''))
+            message.update(sender_name=self.correct_string_decoding(message.get('sender_name','')))
+        
+        return self.messages[:20]
+        """
+
+
     def correct_string_decoding(self, string):
-        return string.encode('iso-8859-1').decode('utf-8)')
+        #print(f"that is string {string}")
+        try:
+            return string.encode('iso-8859-1').decode('utf-8')
+        except UnicodeDecodeError as uni_decode_error:
+            print(f"that is string {string} and that is result of encoding: {string.encode('utf-8')}")
+            return string.encode('utf-8')
+            #print(f"{uni_decode_error} error has occured while trying to decode {string}")
+            #print(f"anabolicznej + {string}")
+            return "anabolicznej"
 
     def get_fb_chat_total_photos_number(self):
         photos_counter = 0
@@ -144,6 +164,15 @@ class FacebookChat:
         frequency_counter = frequency_counter.get(word, int(0))
         return frequency_counter
 
+    def get_fb_chat_participants_reaction_stat(self):
+        reactions = []
+        for message in self.messages.get('messages', ''):
+            if message.get('reactions',''):
+                for reaction in message.get('reactions',''):
+                    reactions.extend(tuple(reaction.keys(), reaction.get(reaction.keys(),'')))
+                    if reaction.get('actor','') == self.name:
+                        pass
+
     def determine_chat_word_frequency_by_word_length(self, word_len: int):
         messages = []
         for message in self.messages:
@@ -156,3 +185,13 @@ class FacebookChat:
             messages += message
         frequency_counter = Counter(messages)
         return frequency_counter.most_common(word_len)
+
+    def get_fb_chat_words(self):
+        words_list = []
+        for content in self.messages.get('messages',''):
+            if content.get('content',''):
+                temp_list = self.correct_string_decoding(content['content']).lower().split(' ')
+                words_list += temp_list
+        
+        return Counter(words_list)
+

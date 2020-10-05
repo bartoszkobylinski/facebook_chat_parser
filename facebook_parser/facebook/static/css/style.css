@@ -1,0 +1,80 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-image: linear-gradient(to right, rgba(171, 223, 246), rgba(255,255,255) );
+    color: rgb(84,84,84);
+}
+
+.charts{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+p{
+    font-size: 1rem;
+}
+/*--------------facebook_form-------------------*/
+
+nav {
+    display: flex;
+    justify-content: center;
+    height: 6rem;
+}
+nav h2{
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    font-size: 2rem;
+}
+main{
+    display: flex;
+    justify-content: center;
+
+}
+.text-section{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    padding-top: 5rem;
+    width: 30%;
+}
+.text-section p{
+    font-size: 1.5rem;
+}
+.form-section{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+}
+#upload-button,
+#id_file_chat{
+    text-transform: uppercase;
+    color: rgb(21,112,208);
+    width: 15rem;
+    border: none;
+    border-radius: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 23px;
+}
+footer{
+    display: flex;
+    justify-content: center;
+    height: 4rem;
+}
+footer p {
+    margin-top: 2rem;
+}
+.chart-container{
+    position: relative;
+    margin: auto;
+    width: 35vh;
+}
