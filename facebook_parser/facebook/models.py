@@ -25,32 +25,18 @@ class Participant(models.Model):
     name = models.CharField(max_length=150)
     facebook_chat = models.ForeignKey(FacebookChat, on_delete=models.CASCADE)
     messages_number = models.PositiveIntegerField(default=0)
+    words_number = models.PositiveIntegerField(default=0)
     characters_number = models.PositiveIntegerField(default=0)
     photos_number = models.PositiveIntegerField(default=0)
     links_number = models.PositiveIntegerField(default=0)
     gifs_number = models.PositiveIntegerField(default=0)
-
+    most_common_reaction = models.CharField(max_length=150)
+    counter_most_common_react = models.PositiveIntegerField(default=0)
+    total_numbers_of_reactions = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f"""{self.name} is a participant of facebook chat with title
                 {self.facebook_chat}"""
-
-
-class ParticipantReaction(models.Model):
-    """
-    model for counting and storing various reaction of user in facebook chat
-    """
-    reaction = models.CharField(max_length=150)
-    counts = models.PositiveIntegerField(default=0)
-    participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
-
-
-class Sentence(models.Model):
-    """
-    model for staring user sentence in facebook chat
-    """
-    sentence = models.TextField()
-    participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
 
 
 class Word(models.Model):
@@ -60,3 +46,6 @@ class Word(models.Model):
     word = models.TextField()
     count = models.PositiveIntegerField(default=0)
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.participant} uses {self.word} {self.count} times"

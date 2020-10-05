@@ -4,16 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    
-    <form enctype="multipart/form-data" name="file_chat" action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <nav>
+        <a href="#">How to get FB chat?</a>
+       <h2>Let's check your facebook chats together</h2> 
+    </nav>
+    <main>
+        <section class="text-section">
+            <p>Do you chat on Facebook Messanger? Who doesn't? More then 1 bilion people on Earth do.</p>
+            <p>Have you ever try think how is the quality of your chat with your friends or loved ones?</p>
+            <p>How many picture you have send in chat?</p>
+            <p>Are you more "chatty" then others?</p>
+            <p>What word is the most common in the chat?</p>
+            <p>Who puts more effort in chat? You?</p>
+            <p>Let's have a look and upload your chat file below. </p> 
+            <p>If you don't know how to find your facebook file, here is information how you can get it.</p>
+        </section>
+        <section class="form-section">  
+            <form enctype="multipart/form-data" name="file_chat" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
         
-        <input type="submit" value="upload">
-    </form>
+                <input id="upload-button" type="submit" value="upload">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>You upload your file on your own responsibility</p>
+    </footer>
+
+    
+    
+    
 
 </body>
 </html>
