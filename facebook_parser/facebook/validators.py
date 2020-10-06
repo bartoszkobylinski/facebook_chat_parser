@@ -1,3 +1,6 @@
+import json
+from jsonschema import validate, ValidationError
+
 
 def validate_json_schema(uploaded_file):
     schema = {
@@ -17,6 +20,3 @@ def validate_json_schema(uploaded_file):
             validate(instance=fb_chat, schema=schema)
         except ValidationError as valid_error:
             return "Your file is corrupted. Try another one"
-            
-
-check_json_schema('bla.py')
