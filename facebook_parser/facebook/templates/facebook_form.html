@@ -27,6 +27,13 @@
         <section class="form-section">  
             <form enctype="multipart/form-data" name="file_chat" method="post">
                 {% csrf_token %}
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p>That is error {{error}}</p>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
                 {{ form.as_p }}
         
                 <input id="upload-button" type="submit" value="upload">
