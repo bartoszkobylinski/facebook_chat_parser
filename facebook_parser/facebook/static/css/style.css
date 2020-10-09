@@ -1,7 +1,7 @@
 body{
     font-family: 'Montserrat', sans-serif;
-    background-image: linear-gradient(to right, rgba(171, 223, 246), rgba(255,255,255) );
-    color: rgb(84,84,84);
+    background-image: linear-gradient(to right, rgb(157, 220, 247), rgba(255,255,255) );
+    color: #0c0c0c);
 }
 
 .charts{
@@ -12,14 +12,14 @@ body{
 p{
     font-size: 1rem;
 }
-/*--------------facebook_form-------------------*/
+/*--------------upload-file-form-------------------*/
 
 nav {
     display: flex;
     justify-content: center;
     height: 6rem;
 }
-nav h2{
+nav h1{
     text-transform: uppercase;
     letter-spacing: 0.3rem;
     font-size: 2rem;
@@ -27,36 +27,85 @@ nav h2{
 main{
     display: flex;
     justify-content: center;
-
 }
-.text-section{
+section{
     display: flex;
     flex-direction: column;
-    align-self: center;
-    padding-top: 5rem;
-    width: 30%;
+    margin-top: 1rem;
 }
-.text-section p{
-    font-size: 1.5rem;
+section h3{
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: 0.1rem;
 }
-.form-section{
-    width: 30%;
+.wrapper{
     display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.chat-container,
+.form-container{
+    width: 50%;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    display: inline-block;
+    padding: 1.25rem;
+    clear: both;
+    border-radius: 2rem;
+    margin-top: 1rem;
+}
+.chat-bot{
+    float: left;
+    background-color: #dfe3ee;
+}
+.me{
+    float: right;
+    background-color: #0084ff;
+    color: #fff;
+}
+.chat-container{
+    background-color: #eee;
+    padding: 1.5rem;
+    border-radius: 2rem;
+}
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    padding-top: 5rem;
+}
+.form-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    text-align: center;
+}
+.form-wrapper h4{
+    margin: 3rem 1rem;
+    letter-spacing: 0.1rem;
+}
+.form-wrapper h4:first-of-type{
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
 }
 
 form{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    justify-self: center;
-    justify-items: center;
+    align-items: center;
+    width: 80%;
 }
 #upload-button,
 #id_file_chat{
     text-transform: uppercase;
-    color: rgb(21,112,208);
+    background-color: #0084ff;
+    color: #fff;
     width: 15rem;
     border: none;
     border-radius: 20px;
