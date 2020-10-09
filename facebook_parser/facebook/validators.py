@@ -1,5 +1,8 @@
+
 import json
+import magic
 from jsonschema import validate, ValidationError
+
 
 
 def validate_json_schema(uploaded_file):
@@ -14,9 +17,11 @@ def validate_json_schema(uploaded_file):
             "thread_path": {"type": "string"}
         }
     }
-    with open(uploaded_file) as json_file:
-        fb_chat = json.load(json_file)
-        try:
-            validate(instance=fb_chat, schema=schema)
-        except ValidationError as valid_error:
-            return "Your file is corrupted. Try another one"
+    if uploaded_file.content_type !="application/json":
+        with open(uploaded_file) as json_file:
+            fb_chat = json.load(json_file)
+            try:
+                validate(instance=fb_chat, schema=schema)
+            except ValidationError as valid_error:
+                return "Your file is corrupted. Try another one"
+    
