@@ -3,6 +3,7 @@
 /__pycache__
 /.vscode
 /db.sqlite3
+/facebook_parser/__pycache__
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
