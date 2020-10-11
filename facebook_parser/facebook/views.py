@@ -99,7 +99,7 @@ class ChartView(TemplateView):
             number_of_reactions_queryset = ParticipantModel.objects.filter(name=user.name).values("counter_most_common_react")
             numbers_react_list.append(number_of_reactions_queryset[0].get('counter_most_common_react'))
         context.update(title=title)
-        context.update(reaction_list=zip(users_list, reaction_list, numbers_react_list))
+        context.update(reaction_list=sorted(zip(users_list, reaction_list, numbers_react_list), key=lambda x:x[2], reverse=True))
         context.update(links_list=links_list)
         context.update(words_list=words_list)
         context.update(users_list=users_list)
@@ -107,12 +107,12 @@ class ChartView(TemplateView):
         context.update(characters_list=characters_list)
         context.update(gifs_list=gifs_list)
         context.update(photos_list=photos_list)
-        context.update(user_messages_list=zip(users_list, messages_list))
-        context.update(user_characters_list=zip(users_list, characters_list))
-        context.update(user_words_list=zip(users_list, words_list))
-        context.update(user_photos_list=zip(users_list, photos_list))
-        context.update(user_links_list=zip(users_list, links_list))
-        context.update(user_gifs_list=zip(users_list, gifs_list))
+        context.update(user_messages_list=sorted(zip(users_list, messages_list), key=lambda x:x[1], reverse=True))
+        context.update(user_characters_list=sorted(zip(users_list, characters_list), key=lambda x:x[1], reverse=True))
+        context.update(user_words_list=sorted(zip(users_list, words_list),key=lambda x:x[1], reverse=True))
+        context.update(user_photos_list=sorted(zip(users_list, photos_list), key=lambda x:x[1], reverse=True))
+        context.update(user_links_list=sorted(zip(users_list, links_list), key=lambda x:x[1], reverse=True))
+        context.update(user_gifs_list=sorted(zip(users_list, gifs_list), key=lambda x:x[1], reverse=True))
         return context
 
 

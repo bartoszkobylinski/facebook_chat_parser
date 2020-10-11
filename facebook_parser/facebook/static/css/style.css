@@ -37,12 +37,16 @@ p{
 .chart-container,
 .stat-container{
     display: flex;
+    flex-direction: row;
     justify-content: center;
 }
 .canvas-wrapper,
 .legend-wrapper{
-    margin: 1rem;
+    margin: 1rem 4rem;
     padding: 1rem;
+}
+.canvas-wrapper{
+    display: flex;
 }
 .legend-wrapper{
     display: flex;
@@ -54,10 +58,36 @@ p{
 th{
     text-transform: uppercase;
     padding: 0.4rem;
+    font-size: 1.5rem;
 }
 td{
     padding: 0.4rem;
+    font-size: 1.5rem;
 }
+.even-wrapper{
+    order: 2;
+}
+.delete{
+    text-align: center; 
+    margin: 3rem; 
+}
+.delete button{
+    text-transform: uppercase;
+    background-color: #0084ff;
+    color: #fff;
+    width: 15rem;
+    border: none;
+    border-radius: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 23px;
+    padding: 1.5rem;
+}
+.delete button a{
+    text-decoration: none;
+}
+
 /*--------------upload-file-form-------------------*/
 
 nav {

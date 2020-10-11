@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="chart-container">
-                <div class="canvas-wrapper">
+                <div class="canvas-wrapper even-wrapper">
                     <canvas id="myChartCharacters" width="200" height="200"></canvas>
                 </div>
                 <div class="legend-wrapper">
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="chart-container">
-                <div class="canvas-wrapper">
+                <div class="canvas-wrapper even-wrapper">
                     <canvas id="myChartPhotos" width="200" height="200"></canvas>
                 </div>
                 <div class="legend-wrapper">
@@ -117,7 +117,7 @@
                 </div>
             </div>   
             <div class="chart-container">
-                <div class="canvas-wrapper">
+                <div class="canvas-wrapper even-wrapper">
                     <canvas id="myChartGifs" width="200" height="200"></canvas>
                 </div>
                 <div class="legend-wrapper">
@@ -158,12 +158,11 @@
     </div>
     </main>
 
-    
-    
-    
-    
+    <div class="delete">
+        <button><a href="{% url 'delete' %}">Delete?</a></button>
+    </div>
+
         
-        <a href="{% url 'delete' %}">Delete?</a>
     
 
     
@@ -172,11 +171,9 @@ var ctx = document.getElementById('myChartMessages').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# messages',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{messages_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
@@ -219,11 +216,9 @@ var ctx = document.getElementById('myChartCharacters').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# characters',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{characters_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
@@ -265,11 +260,9 @@ var ctx = document.getElementById('myChartWords').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# words',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{words_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
@@ -311,11 +304,9 @@ var ctx = document.getElementById('myChartPhotos').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# photos',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{photos_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
@@ -357,11 +348,9 @@ var ctx = document.getElementById('myChartLinks').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# links',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{links_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
@@ -403,11 +392,9 @@ var ctx = document.getElementById('myChartGifs').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# gifs',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{gifs_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
