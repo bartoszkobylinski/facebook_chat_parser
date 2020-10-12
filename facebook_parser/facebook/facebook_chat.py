@@ -7,6 +7,9 @@ class FacebookChat:
     """
     class containing information get from file containg facebook messanger chat
     """
+
+    LENGTH_OF_WORDS = ['four', 'five','six', 'seven','eight','nine','ten']
+
     def __init__(self,
                  file: str = None,
                  total_fb_chat_participants_number=0,
@@ -75,6 +78,12 @@ class FacebookChat:
     def get_fb_chat_participants_number(self):
         return len(self.messages.get('participants', ''))
 
+    def correct_string_decoding(self, string):
+        try:
+            return string.encode('iso-8859-1').decode('utf-8')
+        except UnicodeDecodeError as uni_decode_error:
+            return string.encode('utf-8')
+
     def get_fb_chat_participants(self):
         fb_chat_data = self.messages
         participants = []
@@ -82,29 +91,6 @@ class FacebookChat:
             participant = self.correct_string_decoding(participant['name'])
             participants.append(participant)
         return participants
-
-    def fb_chat_correct_messages_decoding(self):
-        return self.set_content()
-
-        """
-        for message in self.messages:
-            print(message.get('sender_name',''))
-            message.update(sender_name=self.correct_string_decoding(message.get('sender_name','')))
-        
-        return self.messages[:20]
-        """
-
-
-    def correct_string_decoding(self, string):
-        #print(f"that is string {string}")
-        try:
-            return string.encode('iso-8859-1').decode('utf-8')
-        except UnicodeDecodeError as uni_decode_error:
-            print(f"that is string {string} and that is result of encoding: {string.encode('utf-8')}")
-            return string.encode('utf-8')
-            #print(f"{uni_decode_error} error has occured while trying to decode {string}")
-            #print(f"anabolicznej + {string}")
-            return "anabolicznej"
 
     def get_fb_chat_total_photos_number(self):
         photos_counter = 0
@@ -185,6 +171,32 @@ class FacebookChat:
             messages += message
         frequency_counter = Counter(messages)
         return frequency_counter.most_common(word_len)
+
+    def creating_dict_with_words_occurance_sorted_by_lenth(self):
+        words_dict = {}
+        for participant in self.messages.get('participants', ''):
+            name = participant.get('name', '')
+            words_dict[name] = {}
+            for word in self.LENGTH_OF_WORDS:
+                words_dict[name][word] = []
+        for message in self.messages.get('messages',' '):
+            if message.get('sender_name',' ') in words_dict:
+                for word in message.get('content','').split():
+                    if len(word) == 4:
+                        words_dict[message.get('sender_name','')]['four'].append(self.correct_string_decoding(word))
+                    elif len(word) == 5:
+                        words_dict[message.get('sender_name','')]['five'].append(self.correct_string_decoding(word))
+                    elif len(word) == 6:
+                        words_dict[message.get('sender_name','')]['six'].append(self.correct_string_decoding(word))
+                    elif len(word) == 7:
+                        words_dict[message.get('sender_name','')]['seven'].append(self.correct_string_decoding(word))
+                    elif len(word) == 8:
+                        words_dict[message.get('sender_name','')]['eight'].append(self.correct_string_decoding(word))
+                    elif len(word) == 9:
+                        words_dict[message.get('sender_name','')]['nine'].append(self.correct_string_decoding(word))
+                    elif len(word) > 9:
+                        words_dict[message.get('sender_name','')]['ten'].append(self.correct_string_decoding(word))
+        return words_dict
 
     def get_fb_chat_words(self):
         words_list = []

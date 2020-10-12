@@ -2,7 +2,8 @@
 /alina
 /__pycache__
 /.vscode
-/facebook_parser/db.sqlite3
+/db.sqlite3
+/facebook_parser/__pycache__
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

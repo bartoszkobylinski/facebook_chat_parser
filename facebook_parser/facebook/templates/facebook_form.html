@@ -10,27 +10,47 @@
 </head>
 <body>
     <nav>
-        <a href="#">How to get FB chat?</a>
-       <h2>Let's check your facebook chats together</h2> 
+       <h1>Let's check your facebook chats together</h1> 
     </nav>
-    <main>
-        <section class="text-section">
-            <p>Do you chat on Facebook Messanger? Who doesn't? More then 1 bilion people on Earth do.</p>
-            <p>Have you ever try think how is the quality of your chat with your friends or loved ones?</p>
-            <p>How many picture you have send in chat?</p>
-            <p>Are you more "chatty" then others?</p>
-            <p>What word is the most common in the chat?</p>
-            <p>Who puts more effort in chat? You?</p>
-            <p>Let's have a look and upload your chat file below. </p> 
-            <p>If you don't know how to find your facebook file, here is information how you can get it.</p>
-        </section>
-        <section class="form-section">  
-            <form enctype="multipart/form-data" name="file_chat" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-        
-                <input id="upload-button" type="submit" value="upload">
-            </form>
+    <main class="facebook-main">
+        <section>
+            <h3>Do you chat on Facebook Messanger? Who doesn't? More than 1 bilion people on Earth do.</h3>
+            <div class="wrapper">
+                <div class="chat-container">
+                <ul>
+                    <li class="chat-bot">Have you ever thought how is the quality of your chat with your friends or loved ones?</li>
+                    <li class="me">YES, many times but I don't know how &#128533</li>
+                    <li class="chat-bot">Do you know how many picture have you send in chat?</li>
+                    <li class="me">No</li>
+                    <li class="chat-bot">What word is the most common in your conversation?</li>
+                    <li class="me">I don't know. I could only guess.</li>
+                    <li class="chat-bot">Who puts more effort in chat?</li>
+                    <li class="me">Me! Definitely.</li>
+                    <li class="chat-bot">Do you?</li>
+                </ul>
+                </div>
+                <div class="form-container">
+                    <div class="form-wrapper">
+                        <h4>Let's have a look and upload your chat file below.</h4>
+                        <form enctype="multipart/form-data" name="file_chat" method="post">
+                            {% csrf_token %}
+                            {% if contact_form.errors %}
+                                {% for field in contact_form %}
+                                    {% for error in field.errors %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ error|escape }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                            {{ form.as_p }}
+            
+                            <input id="upload-button" type="submit" value="upload">
+                        </form>
+                        <h4>If you don't know how to find your facebook file, here is information how you can get it.</h4>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer>

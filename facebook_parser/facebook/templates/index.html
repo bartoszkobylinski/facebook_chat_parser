@@ -9,43 +9,160 @@
     <title>Document</title>
 </head>
 <body>
+    <nav>
+        <h1>This is your chat statistic</h1>
+    </nav>
 
-    <h2 style="margin-bottom: 3rem;">{{title}} analyze</h2>
-    <div class="charts">
-        <div class="chart-container">
-            <canvas id="myChartMessages" width="200" height="200"></canvas>
-        </div>
-        <div class="chart-container">
-            <canvas id="myChartCharacters" width="200" height="200" ></canvas>
-        </div>
-        <div class="chart-container">
-            <canvas id="myChartWords" width="200" height="200"></canvas>
-        </div>
-        <div class="chart-container">
-            <canvas id="myChartPhotos" width="200" height="200"></canvas>
-        </div>
-        <div class="chart-container">
-            <canvas id="myChartLinks" width="200" height="200"></canvas>
-        </div>   
-        <div class="chart-container">
-            <canvas id="myChartGifs" width="200" height="200"></canvas>
-        </div> 
-
-        <div class="reaction" style="margin-top: 8rem;">
-            <h2>Most common reaction used in chat</h2>
-            {% for user, react, number in reaction_list %}
-
-                <p>{{user}} {{number}} times react with {{react}} reaction</p>    
-            
-                
-            {% endfor %}
+    <main class="index-main">
+        <h2>{{title}}</h2>
+        <div class="charts">
+            <div class="chart-container">
+                <div class="canvas-wrapper">
+                    <canvas id="myChartMessages" width="200" height="200"></canvas>
+                </div>
+                <div class="legend-wrapper">
+                    <table>
+                        <thead>
+                            <th colspan="2">Messages send by participants</th>
+                        </thead>
+                        <tbody>
+                            {% for user, message in user_messages_list %}
+                            <tr>
+                                <td>{{ user }}</td>
+                                <td>{{ message }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="canvas-wrapper even-wrapper">
+                    <canvas id="myChartCharacters" width="200" height="200"></canvas>
+                </div>
+                <div class="legend-wrapper">
+                    <table>
+                        <thead>
+                            <th colspan="2">Characters used by participants</th>
+                        </thead>
+                        <tbody>
+                            {% for user, character in user_characters_list %}
+                            <tr>
+                                <td>{{ user }}</td>
+                                <td>{{ character }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="canvas-wrapper">
+                    <canvas id="myChartWords" width="200" height="200"></canvas>
+                </div>
+                <div class="legend-wrapper">
+                    <table>
+                        <thead>
+                            <th colspan="2">Words used by participants</th>
+                        </thead>
+                        <tbody>
+                            {% for user, word in user_words_list %}
+                            <tr>
+                                <td>{{ user }}</td>
+                                <td>{{ word }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="canvas-wrapper even-wrapper">
+                    <canvas id="myChartPhotos" width="200" height="200"></canvas>
+                </div>
+                <div class="legend-wrapper">
+                    <table>
+                        <thead>
+                            <th colspan="2">Photos send by participants</th>
+                        </thead>
+                        <tbody>
+                            {% for user, photo in user_photos_list %}
+                            <tr>
+                                <td>{{ user }}</td>
+                                <td>{{ photo }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="canvas-wrapper">
+                    <canvas id="myChartLinks" width="200" height="200"></canvas>
+                </div>
+                <div class="legend-wrapper">
+                    <table>
+                        <thead>
+                            <th colspan="2">Links send by participants</th>
+                        </thead>
+                        <tbody>
+                            {% for user, link in user_links_list %}
+                            <tr>
+                                <td>{{ user }}</td>
+                                <td>{{ link }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>   
+            <div class="chart-container">
+                <div class="canvas-wrapper even-wrapper">
+                    <canvas id="myChartGifs" width="200" height="200"></canvas>
+                </div>
+                <div class="legend-wrapper">
+                    <table>
+                        <thead>
+                            <th colspan="2">Gifs send by participants</th>
+                        </thead>
+                        <tbody>
+                            {% for user, gif in user_gifs_list %}
+                            <tr>
+                                <td>{{ user }}</td>
+                                <td>{{ gif }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+            <div class="stat-container">
+                <div class="reaction">
+                    <table>
+                        <thead>
+                            <th>Most common reaction used in chat</th>
+                        </thead>
+                        <tbody>
+                            {% for user, react, number in reaction_list %}
+                            <tr>
+                                <td>{{ user }}</td>
+                                <td>{{ number }}</td>
+                                <td>{{ react }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-    
-    
-    
+    </main>
+
+    <div class="delete">
+        <button><a href="{% url 'delete' %}">Delete?</a></button>
+    </div>
+
         
-        <a href="{% url 'delete' %}">Delete?</a>
     
 
     
@@ -54,11 +171,9 @@ var ctx = document.getElementById('myChartMessages').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# messages',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{messages_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
@@ -101,11 +216,9 @@ var ctx = document.getElementById('myChartCharacters').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# characters',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{characters_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
@@ -145,13 +258,11 @@ var myChart = new Chart(ctx, {
 //next chart
 var ctx = document.getElementById('myChartWords').getContext('2d');
 var myChart = new Chart(ctx, {
-    type: 'polarArea',
+    type: 'doughnut',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# words',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{words_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
@@ -193,11 +304,9 @@ var ctx = document.getElementById('myChartPhotos').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# photos',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{photos_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
@@ -239,11 +348,9 @@ var ctx = document.getElementById('myChartLinks').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# links',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{links_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
@@ -285,11 +392,9 @@ var ctx = document.getElementById('myChartGifs').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        //labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange','Yellow','Zielony','Niebieski'],
         labels: {{ users_list|safe}},
         datasets: [{
-            label: '# gifs',
-            //data: [91, 91, 900, 9999, 99999, 9, 9, 190, 190],
+            label: '',
             data: {{gifs_list|safe}},
             backgroundColor: [
                 'rgba(255, 99, 132, 1)',
