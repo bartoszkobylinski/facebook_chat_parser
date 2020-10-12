@@ -39,13 +39,3 @@ class Participant(models.Model):
                 {self.facebook_chat}"""
 
 
-class Word(models.Model):
-    """
-    model for storing user words in facebook chat
-    """
-    word = models.TextField()
-    count = models.PositiveIntegerField(default=0)
-    participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.participant} uses {self.word} {self.count} times"

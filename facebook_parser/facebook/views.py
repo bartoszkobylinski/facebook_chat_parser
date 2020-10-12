@@ -5,7 +5,6 @@ from django.urls import reverse_lazy
 from .forms import FacebookChatForm
 from .models import FacebookChat as FacebookChatModel
 from .models import Participant as ParticipantModel
-from .models import Word as WordModel
 from .facebook_chat import FacebookChat
 from .participant import Participant
 from django.http import request
