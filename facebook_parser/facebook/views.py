@@ -28,6 +28,8 @@ class UploadFileView(FormView):
             fb_chat = FacebookChat()
             fb_chat.file = file
             fb_chat.messages
+            words_dict = fb_chat.creating_dict_with_words_occurance_sorted_by_lenth()
+            print(f"that is keys of dict {words_dict.keys()}")
             fb_chat_model = FacebookChatModel(chat_title=fb_chat.get_fb_chat_title(),
                                      participants_number= fb_chat.get_fb_chat_participants_number(),
                                      gifs_number=fb_chat.get_fb_chat_total_gifs_number(),
@@ -62,12 +64,11 @@ class UploadFileView(FormView):
                     name=participant,
                     facebook_chat=fb_chat_model
                     )
-                #print(participant_model.counter_most_common_react)
                 participant_model.save()
             return self.form_valid(form)
         else:
-            messages.error(self.request, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             return self.form_invalid(form)
+
 
 class ChartView(TemplateView):
     template_name = "index.html"
