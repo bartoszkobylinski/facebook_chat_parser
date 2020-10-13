@@ -172,30 +172,31 @@ class FacebookChat:
         frequency_counter = Counter(messages)
         return frequency_counter.most_common(word_len)
 
-    def creating_dict_with_words_occurance_sorted_by_lenth(self):
+    def creating_dict_with_words_occurance_sorted_by_length(self):
         words_dict = {}
         for participant in self.messages.get('participants', ''):
-            name = participant.get('name', '')
+            name = self.correct_string_decoding(participant.get('name', ''))
             words_dict[name] = {}
             for word in self.LENGTH_OF_WORDS:
                 words_dict[name][word] = []
         for message in self.messages.get('messages',' '):
-            if message.get('sender_name',' ') in words_dict:
+            if self.correct_string_decoding(message.get('sender_name',' ')) in words_dict:
                 for word in message.get('content','').split():
+                    word = self.correct_string_decoding(word).lower()
                     if len(word) == 4:
-                        words_dict[message.get('sender_name','')]['four'].append(self.correct_string_decoding(word))
+                        words_dict[self.correct_string_decoding(message.get('sender_name',''))]['four'].append(word)
                     elif len(word) == 5:
-                        words_dict[message.get('sender_name','')]['five'].append(self.correct_string_decoding(word))
+                        words_dict[self.correct_string_decoding(message.get('sender_name',''))]['five'].append(word)
                     elif len(word) == 6:
-                        words_dict[message.get('sender_name','')]['six'].append(self.correct_string_decoding(word))
+                        words_dict[self.correct_string_decoding(message.get('sender_name',''))]['six'].append(word)
                     elif len(word) == 7:
-                        words_dict[message.get('sender_name','')]['seven'].append(self.correct_string_decoding(word))
+                        words_dict[self.correct_string_decoding(message.get('sender_name',''))]['seven'].append(word)
                     elif len(word) == 8:
-                        words_dict[message.get('sender_name','')]['eight'].append(self.correct_string_decoding(word))
+                        words_dict[self.correct_string_decoding(message.get('sender_name',''))]['eight'].append(word)
                     elif len(word) == 9:
-                        words_dict[message.get('sender_name','')]['nine'].append(self.correct_string_decoding(word))
+                        words_dict[self.correct_string_decoding(message.get('sender_name',''))]['nine'].append(word)
                     elif len(word) > 9:
-                        words_dict[message.get('sender_name','')]['ten'].append(self.correct_string_decoding(word))
+                        words_dict[self.correct_string_decoding(message.get('sender_name',''))]['ten'].append(word)
         return words_dict
 
     def get_fb_chat_words(self):

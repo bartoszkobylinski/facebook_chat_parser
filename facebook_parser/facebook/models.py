@@ -82,7 +82,7 @@ class SevenCharWord(models.Model):
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
 
-class EighthCharWord(models.Model):
+class EightCharWord(models.Model):
     """
     model for word in chat which has eight character
     """
@@ -110,7 +110,7 @@ class TenAndMoreCharWord(models.Model):
     """
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
-    word = models.CharField(max_length=25)
+    word = models.CharField(max_length=500)
 
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
