@@ -34,18 +34,18 @@
                         <h4>Let's have a look and upload your chat file below.</h4>
                         <form enctype="multipart/form-data" name="file_chat" method="post">
                             {% csrf_token %}
-                            {% if contact_form.errors %}
-                                {% for field in contact_form %}
+                            {% if form.errors %}
+                                {% for field in form %}
                                     {% for error in field.errors %}
-                                        <div class="alert alert-danger">
-                                            <strong>{{ error|escape }}</strong>
+                                        <div class="alert-danger">
+                                            <strong>{{ error }}</strong>
                                         </div>
                                     {% endfor %}
                                 {% endfor %}
                             {% endif %}
                             {{ form.as_p }}
             
-                            <input id="upload-button" type="submit" value="upload">
+                            <input id="upload-button" type="submit" value="upload" onclick="changeText()">
                         </form>
                         <h4>If you don't know how to find your facebook file, here is information how you can get it.</h4>
                     </div>
@@ -56,7 +56,19 @@
     <footer>
         <p>You upload your file on your own responsibility</p>
     </footer>
+<script>
+    var file = false
+    function changeText(){
+        document.getElementById('id_chat_file')
+        if(file == true){
+        var button = document.getElementById('upload-button')
+        button.value = "Uploading...";
+        button.style.backgroundColor = "#00cc00"
+            
+        }
+    }
 
+</script>
     
     
     

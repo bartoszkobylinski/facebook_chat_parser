@@ -137,16 +137,22 @@ class ChartView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         word = request.GET.get("word")
+        print(word)
         if word:
             if len(word) == 4:
                 context["word"] = FourCharWord.objects.filter(word=word)
-                print(context["word"])
-            if len(word) == 5:
+            elif len(word) == 5:
                 context["word"] = FiveCharWord.objects.filter(word=word)
-                print(context["word"])
-            if len(word) == 6:
+            elif len(word) == 6:
                 context["word"] = SixCharWord.objects.filter(word=word)
-                print(context["word"])
+            elif len(word) == 7:
+                context["word"] = SevenCharWord.objects.filter(word=word)
+            elif len(word) == 8:
+                context["word"] = EightCharWord.objects.filter(word=word)
+            elif len(word) == 9:
+                context["word"] = NineCharWord.objects.filter(word=word)
+            elif len(word) == 10:
+                context["word"] = TenAndMoreCharWord.objects.filter(word=word)
         return self.render_to_response(context)
 
     def get_context_data(self, *args, **kwargs):

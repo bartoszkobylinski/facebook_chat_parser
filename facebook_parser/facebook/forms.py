@@ -1,8 +1,9 @@
 from django.forms import forms
+from django.forms.widgets import FileInput
 
 
 class FacebookChatForm(forms.Form):
-    chat_file = forms.FileField()
+    chat_file = forms.FileField(widget=FileInput(attrs={'onchange': 'file = true;'}))
 
     def clean_chat_file(self):
         data = self.cleaned_data.get("chat_file")
