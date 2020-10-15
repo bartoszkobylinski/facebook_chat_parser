@@ -38,6 +38,7 @@ class Participant(models.Model):
         return f"""{self.name} is a participant of facebook chat with title
                 {self.facebook_chat}"""
 
+
 class FourCharWord(models.Model):
     """
     model for word in chat which has four character
@@ -48,6 +49,7 @@ class FourCharWord(models.Model):
 
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
+
 
 class FiveCharWord(models.Model):
     """
@@ -60,6 +62,7 @@ class FiveCharWord(models.Model):
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
 
+
 class SixCharWord(models.Model):
     """
     model for word in chat which has six character
@@ -70,6 +73,7 @@ class SixCharWord(models.Model):
 
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
+
 
 class SevenCharWord(models.Model):
     """
@@ -82,6 +86,7 @@ class SevenCharWord(models.Model):
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
 
+
 class EightCharWord(models.Model):
     """
     model for word in chat which has eight character
@@ -92,6 +97,7 @@ class EightCharWord(models.Model):
 
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
+
 
 class NineCharWord(models.Model):
     """
@@ -104,9 +110,10 @@ class NineCharWord(models.Model):
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
 
+
 class TenAndMoreCharWord(models.Model):
     """
-    model for word in chat which has ten and more character 
+    model for word in chat which has ten and more character
     """
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
