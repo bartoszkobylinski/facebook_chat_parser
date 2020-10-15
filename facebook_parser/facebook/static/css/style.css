@@ -87,6 +87,22 @@ td{
 .delete button a{
     text-decoration: none;
 }
+.words-option{
+    display: flex;
+    justify-content: center;
+}
+.words-option select{
+    margin: 1rem;
+    background-color: burlywood;
+    padding: 1rem;
+    border: none;
+    font-size: 1.5rem;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+}
+
+.hide-stat{
+    display: none;
+}
 
 /*--------------upload-file-form-------------------*/
 

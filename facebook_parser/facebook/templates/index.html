@@ -6,6 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+        function populate(){
+            
+            var doc = document.getElementById('words-select');
+            if (doc.value == "4 letters"){
+                for(index = 0; index<doc.length; index ++){
+                    document.getElementsByClassName('hide-stat')[index].style.display = 'none'
+                }
+                document.getElementsByClassName('stats-4-words')[0].style.display = 'flex';
+            }
+            else if(doc.value == '5 letters'){
+                for(index = 0; index<doc.length; index ++){
+                    document.getElementsByClassName('hide-stat')[index].style.display = 'none'
+                }
+                document.getElementsByClassName('stats-5-words')[0].style.display = 'flex';
+            }
+            else if(doc.value == '6 letters'){
+                for(index = 0; index<doc.length; index ++){
+                    document.getElementsByClassName('hide-stat')[index].style.display = 'none'
+                }
+                document.getElementsByClassName('stats-6-words')[0].style.display = 'flex';
+            }
+            else if (doc.value == '7 letters'){
+                for(index = 0; index<doc.length; index ++){
+                    document.getElementsByClassName('hide-stat')[index].style.display = 'none'
+                }
+                document.getElementsByClassName('stats-7-words')[0].style.display = 'flex';
+            }
+            else if(doc.value == '8 letters'){
+                for(index = 0; index<doc.length; index ++){
+                    document.getElementsByClassName('hide-stat')[index].style.display = 'none'
+                }
+                document.getElementsByClassName('stats-8-words')[0].style.display = 'flex';
+            }
+            else if (doc.value == '9 letters'){
+                for(index = 0; index<doc.length; index ++){
+                    document.getElementsByClassName('hide-stat')[index].style.display = 'none'
+                }
+                document.getElementsByClassName('stats-9-words')[0].style.display = 'flex';
+            }
+            else if(doc.value == '10 letters'){
+                for(index = 0; index<doc.length; index ++){
+                    document.getElementsByClassName('hide-stat')[index].style.display = 'none'
+                }
+                document.getElementsByClassName('stats-10-words')[0].style.display = 'flex';
+            }     
+    }
+
+    </script>
     <title>Document</title>
 </head>
 <body>
@@ -154,10 +204,23 @@
                     </table>
                 </div>
             </div>
-            <div class="stat-container">
+            <div class="words-option">
+                <select name="words" id="words-select" onchange="populate()">
+                    <option value="4 letters">Most common 4-characters words used by participants</option>
+                    <option value="5 letters">Most common 5-characters words used by participants</option>
+                    <option value="6 letters">Most common 6-characters words used by participants</option>
+                    <option value="7 letters">Most common 7-characters words used by participants</option>
+                    <option value="8 letters">Most common 8-characters words used by participants</option>
+                    <option value="9 letters">Most common 9-characters words used by participants</option>
+                    <option value="10 letters">Most common 10-characters words used by participants</option>
+                </select>
+            </div>
+            <div class="stat-container stats-4-words hide-stat">
                 <table>
                     <thead>
-                        <th>Most common 4-characters words used by participants</th>
+                        <th>user</th>
+                        <th>count</th>
+                        <th>word</th>
                     </thead>
                     <tbody>
                         {% for x in four_char_words %}
@@ -170,13 +233,15 @@
                         </tr>
                         {% endfor %}
                     </tbody>
-                </table>
-                
+                </table>       
             </div>
-            <div class="stat-container">
+            
+            <div class="stat-container stats-5-words hide-stat">
                 <table>
                     <thead>
-                        <th>Most common 5-characters words used by participants</th>
+                        <th>user</th>
+                        <th>count</th>
+                        <th>word</th>
                     </thead>
                     <tbody>
                         {% for x in five_char_words %}
@@ -191,11 +256,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="stat-container">
+            <div class="stat-container stats-6-words hide-stat">
                 <table>
-                    <thead>
-                        <th>Most common 6-characters words used by participants</th>
-                    </thead>
                     <tbody>
                         {% for x in six_char_words %}
                         <tr>
@@ -209,11 +271,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="stat-container">
+            <div class="stat-container stats-7-words hide-stat">
                 <table>
-                    <thead>
-                        <th>Most common 7-characters words used by participants</th>
-                    </thead>
                     <tbody>
                         {% for x in seven_char_words %}
                         <tr>
@@ -227,11 +286,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="stat-container">
+            <div class="stat-container stats-8-words hide-stat">
                 <table>
-                    <thead>
-                        <th>Most common 8-characters words used by participants</th>
-                    </thead>
                     <tbody>
                         {% for x in eight_char_words %}
                         <tr>
@@ -245,11 +301,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="stat-container">
+            <div class="stat-container stats-9-words hide-stat">
                 <table>
-                    <thead>
-                        <th>Most common 9-characters words used by participants</th>
-                    </thead>
                     <tbody>
                         {% for x in nine_char_words %}
                         <tr>
@@ -263,11 +316,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="stat-container">
+            <div class="stat-container stats-10-words hide-stat">
                 <table>
-                    <thead>
-                        <th>Most common 10 and more characters words used by participants</th>
-                    </thead>
                     <tbody>
                         {% for x in ten_char_words %}
                         <tr>
@@ -281,6 +331,8 @@
                     </tbody>
                 </table>
             </div>
+
+            {{word}}
         </div>
     </div>
     </main>
@@ -558,6 +610,7 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
 </script>
     
 </body>
