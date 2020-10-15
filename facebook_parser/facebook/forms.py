@@ -1,8 +1,4 @@
 from django.forms import forms
-from django.contrib import messages
-import json
-from jsonschema import validate, ValidationError
-
 
 
 class FacebookChatForm(forms.Form):
