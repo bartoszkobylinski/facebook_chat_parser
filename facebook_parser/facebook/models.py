@@ -5,6 +5,7 @@ class FacebookChat(models.Model):
     """
     model for FacebookChat file uploaded by user
     """
+
     chat_title = models.CharField(max_length=150)
     participants_number = models.PositiveIntegerField(default=0)
     gifs_number = models.PositiveIntegerField(default=0)
@@ -22,6 +23,7 @@ class Participant(models.Model):
     """
     model for Participant of FacebookChat
     """
+
     name = models.CharField(max_length=150)
     facebook_chat = models.ForeignKey(FacebookChat, on_delete=models.CASCADE)
     messages_number = models.PositiveIntegerField(default=0)
@@ -43,6 +45,7 @@ class FourCharWord(models.Model):
     """
     model for word in chat which has four character
     """
+
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
     word = models.CharField(max_length=4)
@@ -55,6 +58,7 @@ class FiveCharWord(models.Model):
     """
     model for word in chat which has five character
     """
+
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
     word = models.CharField(max_length=5)
@@ -67,6 +71,7 @@ class SixCharWord(models.Model):
     """
     model for word in chat which has six character
     """
+
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
     word = models.CharField(max_length=6)
@@ -79,6 +84,7 @@ class SevenCharWord(models.Model):
     """
     model for word in chat which has seven character
     """
+
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
     word = models.CharField(max_length=7)
@@ -91,6 +97,7 @@ class EightCharWord(models.Model):
     """
     model for word in chat which has eight character
     """
+
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
     word = models.CharField(max_length=8)
@@ -103,6 +110,7 @@ class NineCharWord(models.Model):
     """
     model for word in chat which has nine character
     """
+
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
     word = models.CharField(max_length=9)
@@ -115,6 +123,7 @@ class TenAndMoreCharWord(models.Model):
     """
     model for word in chat which has ten and more character
     """
+
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
     word = models.CharField(max_length=500)
