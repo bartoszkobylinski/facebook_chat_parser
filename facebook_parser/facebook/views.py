@@ -1,4 +1,5 @@
 import json
+from time import process_time
 from collections import Counter
 from django.contrib import messages
 from django.views.generic import FormView, TemplateView
@@ -12,13 +13,13 @@ from facebook.facebook_chat import FacebookChat
 from facebook.participant import Participant
 
 
-
 class UploadFileView(FormView):
     form_class = FacebookChatForm
     template_name = 'facebook_form.html'
     success_url = 'index'
 
     def post(self, request, *args, **kwargs):
+        start = process_time()
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         if form.is_valid():
@@ -31,7 +32,6 @@ class UploadFileView(FormView):
             fb_chat.file = file
             fb_chat.messages
             words_dict = fb_chat.creating_dict_with_words_occurance_sorted_by_length()
-            print(words_dict.keys())
             fb_chat_model = FacebookChatModel(chat_title=fb_chat.get_fb_chat_title(),
                                      participants_number= fb_chat.get_fb_chat_participants_number(),
                                      gifs_number=fb_chat.get_fb_chat_total_gifs_number(),
@@ -91,7 +91,8 @@ class UploadFileView(FormView):
                         elif key == 'ten':
                             this_word = TenAndMoreCharWord(participant=participant_model, count=word[1], word=[0])
                             this_word.save()
-                            
+            end = process_time()
+            print(f"that is time:{end - start} s ")                
                         
                             
                     
@@ -102,6 +103,21 @@ class UploadFileView(FormView):
 
 class ChartView(TemplateView):
     template_name = "index.html"
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        word = request.GET.get('word')
+        if word:
+            if len(word) == 4:
+                context['word'] = FourCharWord.objects.filter(word=word)
+                print(context['word'])
+            if len(word) == 5:
+                context['word'] = FiveCharWord.objects.filter(word=word)
+                print(context['word'])
+            if len(word) == 6:
+                context['word'] = SixCharWord.objects.filter(word=word)
+                print(context['word'])
+        return self.render_to_response(context)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -172,7 +188,6 @@ class ChartView(TemplateView):
         context.update(eight_char_words=list(zip(users_list, eight_char_word_list)))
         context.update(nine_char_words=list(zip(users_list, nine_char_word_list)))
         context.update(ten_char_words=list(zip(users_list, ten_char_word_list)))
-        print(context['ten_char_words'])
         return context
 
 
