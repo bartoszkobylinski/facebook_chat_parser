@@ -286,3 +286,7 @@ class DeleteFaceView(TemplateView):
         queryset = FacebookChatModel.objects.all()
         queryset.delete()
         return context
+
+
+class FacebookDownloadView(TemplateView):
+    template_name = "how_to_download_facebook.html"
