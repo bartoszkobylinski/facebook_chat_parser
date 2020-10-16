@@ -103,6 +103,45 @@ td{
 .hide-stat{
     display: none;
 }
+.stats-4-words{
+    display: flex;
+}
+.word-occurence-table{
+    border-collapse: collapse;
+}.word-occurence-table th, td{
+    padding: 0.5rem 2rem;
+}
+.word-occurence-table,
+.word-occurence-table th,
+.word-occurence-table td{
+    border: 1px solid #0c0c0c;
+}
+.word-occurence-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.specific-word-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.specific-word-form label,input{
+    margin: 1rem;
+}
+.specific-word-result{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20rem;
+}
+.specific-word-result__user{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+
 
 /*--------------upload-file-form-------------------*/
 

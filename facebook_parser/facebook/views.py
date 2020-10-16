@@ -137,7 +137,6 @@ class ChartView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         word = request.GET.get("word")
-        print(word)
         if word:
             if len(word) == 4:
                 context["word"] = FourCharWord.objects.filter(word=word)

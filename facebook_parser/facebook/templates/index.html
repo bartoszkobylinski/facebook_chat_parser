@@ -168,20 +168,22 @@
                 </select>
             </div>
             <div class="stat-container stats-4-words hide-stat">
-                <table>
+                <table class="word-occurence-table">
                     <thead>
                         <th>user</th>
-                        <th>count</th>
                         <th>word</th>
+                        <th>count</th>
                     </thead>
                     <tbody>
                         {% for x in four_char_words %}
                         <tr>
-                        <td> {{x.0}}</td>    
-                        {% for y in x.1 %}
-                            <td>{{y.count}}</td>
-                            <td>{{y.word}}</td>
-                        {% endfor %}
+                            <td rowspan="4"> {{x.0}}</td>    
+                                {% for y in x.1 %}
+                                    <tr>
+                                        <td>{{ y.word }}</td>
+                                        <td>{{ y.count }}</td>
+                                    </tr>
+                                {% endfor %}
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -189,113 +191,154 @@
             </div>
             
             <div class="stat-container stats-5-words hide-stat">
-                <table>
+                <table class="word-occurence-table">
                     <thead>
                         <th>user</th>
-                        <th>count</th>
                         <th>word</th>
+                        <th>count</th>
                     </thead>
                     <tbody>
                         {% for x in five_char_words %}
                         <tr>
-                        <td> {{x.0}}</td>    
-                        {% for y in x.1 %}
-                            <td>{{y.count}}</td>
-                            <td>{{y.word}}</td>
-                        {% endfor %}
+                            <td rowspan="4"> {{x.0}}</td>    
+                                {% for y in x.1 %}
+                                    <tr>
+                                        <td>{{ y.word }}</td>
+                                        <td>{{ y.count }}</td>
+                                    </tr>
+                                {% endfor %}
                         </tr>
                         {% endfor %}
                     </tbody>
-                </table>
+                </table> 
             </div>
             <div class="stat-container stats-6-words hide-stat">
-                <table>
+                <table class="word-occurence-table">
+                    <thead>
+                        <th>user</th>
+                        <th>word</th>
+                        <th>count</th>
+                    </thead>
                     <tbody>
                         {% for x in six_char_words %}
                         <tr>
-                        <td> {{x.0}}</td>    
-                        {% for y in x.1 %}
-                            <td>{{y.count}}</td>
-                            <td>{{y.word}}</td>
-                        {% endfor %}
+                            <td rowspan="4"> {{x.0}}</td>    
+                                {% for y in x.1 %}
+                                    <tr>
+                                        <td>{{ y.word }}</td>
+                                        <td>{{ y.count }}</td>
+                                    </tr>
+                                {% endfor %}
                         </tr>
                         {% endfor %}
                     </tbody>
-                </table>
+                </table> 
             </div>
             <div class="stat-container stats-7-words hide-stat">
-                <table>
+                <table class="word-occurence-table">
+                    <thead>
+                        <th>user</th>
+                        <th>word</th>
+                        <th>count</th>
+                    </thead>
                     <tbody>
                         {% for x in seven_char_words %}
                         <tr>
-                        <td> {{x.0}}</td>    
-                        {% for y in x.1 %}
-                            <td>{{y.count}}</td>
-                            <td>{{y.word}}</td>
-                        {% endfor %}
+                            <td rowspan="4"> {{x.0}}</td>    
+                                {% for y in x.1 %}
+                                    <tr>
+                                        <td>{{ y.word }}</td>
+                                        <td>{{ y.count }}</td>
+                                    </tr>
+                                {% endfor %}
                         </tr>
                         {% endfor %}
                     </tbody>
-                </table>
+                </table> 
             </div>
             <div class="stat-container stats-8-words hide-stat">
-                <table>
+                <table class="word-occurence-table">
+                    <thead>
+                        <th>user</th>
+                        <th>word</th>
+                        <th>count</th>
+                    </thead>
                     <tbody>
                         {% for x in eight_char_words %}
                         <tr>
-                        <td> {{x.0}}</td>    
-                        {% for y in x.1 %}
-                            <td>{{y.count}}</td>
-                            <td>{{y.word}}</td>
-                        {% endfor %}
+                            <td rowspan="4"> {{x.0}}</td>    
+                                {% for y in x.1 %}
+                                    <tr>
+                                        <td>{{ y.word }}</td>
+                                        <td>{{ y.count }}</td>
+                                    </tr>
+                                {% endfor %}
                         </tr>
                         {% endfor %}
                     </tbody>
-                </table>
+                </table> 
             </div>
             <div class="stat-container stats-9-words hide-stat">
-                <table>
+                <table class="word-occurence-table">
+                    <thead>
+                        <th>user</th>
+                        <th>word</th>
+                        <th>count</th>
+                    </thead>
                     <tbody>
                         {% for x in nine_char_words %}
                         <tr>
-                        <td> {{x.0}}</td>    
-                        {% for y in x.1 %}
-                            <td>{{y.count}}</td>
-                            <td>{{y.word}}</td>
-                        {% endfor %}
+                            <td rowspan="4"> {{x.0}}</td>    
+                                {% for y in x.1 %}
+                                    <tr>
+                                        <td>{{ y.word }}</td>
+                                        <td>{{ y.count }}</td>
+                                    </tr>
+                                {% endfor %}
                         </tr>
                         {% endfor %}
                     </tbody>
-                </table>
+                </table> 
             </div>
             <div class="stat-container stats-10-words hide-stat">
-                <table>
+                <table class="word-occurence-table">
+                    <thead>
+                        <th>user</th>
+                        <th>word</th>
+                        <th>count</th>
+                    </thead>
                     <tbody>
                         {% for x in ten_char_words %}
                         <tr>
-                        <td> {{x.0}}</td>    
-                        {% for y in x.1 %}
-                            <td>{{y.count}}</td>
-                            <td>{{y.word}}</td>
-                        {% endfor %}
+                            <td rowspan="4"> {{x.0}}</td>    
+                                {% for y in x.1 %}
+                                    <tr>
+                                        <td>{{ y.word }}</td>
+                                        <td>{{ y.count }}</td>
+                                    </tr>
+                                {% endfor %}
                         </tr>
                         {% endfor %}
                     </tbody>
-                </table>
+                </table> 
             </div>
             <div class="word-occurence-form">
-                <form action="" method="get">
-                    <label for="word">Word to search</label>
-                    <input type="text" name="word" id="word" value="{{word}}">
+                <form class="specific-word-form" action="" method="get">
+                    <label for="word">Word to search:</label>
+                    <input type="text" name="word" id="word" value="{{word}} " placeholder="Type word here">
                     <input type="submit" value="OK">
                 </form>
-
-                {% for text in word %}
-                    <h1>{{ text }}</h1>
-                {% endfor%}
+                <div class="specific-word-result">
+                    {% for text in word %}
+                        <div class="specific-word-result__user">
+                            <p>{{ text.participant.name }}</p>
+                            <p>{{ text.count }}</p>
+                            <p>{{ text.word }}</p>
+                        </div>
+                    {% endfor%}
+                </div>
+                
             </div>
-
-            {{word}}
         </div>
     </div>
     </main>

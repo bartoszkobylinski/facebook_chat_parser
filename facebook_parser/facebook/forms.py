@@ -12,5 +12,5 @@ class FacebookChatForm(forms.Form):
             return data
         else:
             raise forms.ValidationError(
-                "Your file is not JSON file. Let's try with another one."
+                "Your file is not JSON file. Let's try with another file."
             )

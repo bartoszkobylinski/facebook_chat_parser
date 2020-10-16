@@ -44,3 +44,13 @@ function populate(){
         document.getElementsByClassName('stats-10-words')[0].style.display = 'flex';
     }     
 }
+
+var file = false
+function changeText(){    
+    document.getElementById('id_chat_file')
+    if(file == true){
+        var button = document.getElementById('upload-button')
+        button.value = "Uploading...";
+        button.style.backgroundColor = "#00cc00" 
+        }
+    }

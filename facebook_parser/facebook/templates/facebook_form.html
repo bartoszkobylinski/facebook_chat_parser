@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="{% static 'js/populate.js' %}"></script>
     <title>Document</title>
 </head>
 <body>
@@ -34,15 +35,7 @@
                         <h4>Let's have a look and upload your chat file below.</h4>
                         <form enctype="multipart/form-data" name="file_chat" method="post">
                             {% csrf_token %}
-                            {% if form.errors %}
-                                {% for field in form %}
-                                    {% for error in field.errors %}
-                                        <div class="alert-danger">
-                                            <strong>{{ error }}</strong>
-                                        </div>
-                                    {% endfor %}
-                                {% endfor %}
-                            {% endif %}
+                            
                             {{ form.as_p }}
             
                             <input id="upload-button" type="submit" value="upload" onclick="changeText()">
@@ -56,22 +49,5 @@
     <footer>
         <p>You upload your file on your own responsibility</p>
     </footer>
-<script>
-    var file = false
-    function changeText(){
-        document.getElementById('id_chat_file')
-        if(file == true){
-        var button = document.getElementById('upload-button')
-        button.value = "Uploading...";
-        button.style.backgroundColor = "#00cc00"
-            
-        }
-    }
-
-</script>
-    
-    
-    
-
 </body>
 </html>
