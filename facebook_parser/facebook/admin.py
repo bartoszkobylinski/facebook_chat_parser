@@ -1,6 +1,15 @@
 from django.contrib import admin
-from facebook.models import (FacebookChat, Participant, FourCharWord, FiveCharWord, SixCharWord, SevenCharWord,
-                             EightCharWord, NineCharWord, TenAndMoreCharWord)
+from facebook.models import (
+    FacebookChat,
+    Participant,
+    FourCharWord,
+    FiveCharWord,
+    SixCharWord,
+    SevenCharWord,
+    EightCharWord,
+    NineCharWord,
+    TenAndMoreCharWord,
+)
 
 
 admin.site.register(FacebookChat)

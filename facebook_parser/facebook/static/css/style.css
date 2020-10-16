@@ -103,6 +103,45 @@ td{
 .hide-stat{
     display: none;
 }
+.stats-4-words{
+    display: flex;
+}
+.word-occurence-table{
+    border-collapse: collapse;
+}.word-occurence-table th, td{
+    padding: 0.5rem 2rem;
+}
+.word-occurence-table,
+.word-occurence-table th,
+.word-occurence-table td{
+    border: 1px solid #0c0c0c;
+}
+.word-occurence-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.specific-word-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.specific-word-form label,input{
+    margin: 1rem;
+}
+.specific-word-result{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20rem;
+}
+.specific-word-result__user{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+
 
 /*--------------upload-file-form-------------------*/
 
@@ -176,6 +215,7 @@ ul li{
 }
 .form-wrapper h4{
     margin: 3rem 1rem;
+    margin-bottom: 0;
     letter-spacing: 0.1rem;
 }
 .form-wrapper h4:first-of-type{
@@ -210,4 +250,65 @@ footer{
 footer p {
     margin-top: 2rem;
 }
+.download-button{
+    border: none;
+    padding: 0.75rem;
+}
+.download-button a{
+    color: #0084ff;
+    text-decoration: none;
+    font-size: 3.5rem;
+}
+.errorlist li{
+    border: 1px solid  #ff0033;
+    color: #ff0033 ;
+    font-weight: 900;
+}
 
+/*-------------------download-page--------------*/
+.tutorial-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+article{
+    display: flex;
+    width: 80%;
+    padding: 4rem 2rem;
+    border-bottom: 1px solid lightgray;
+}
+article p{
+    letter-spacing: 0.1rem;
+    font-weight: 500;
+}
+.first-article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 0;
+}
+.first-article h3{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.article-content{
+    width: 50%;
+}
+.article-image{
+    width: 50%;
+}
+.article-image img{
+    width: 100%;
+}
+.backwards-link{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #dfe3ee;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 30px;
+    background-color: #0084ff;
+    padding: 1rem;
+    margin: 1rem;
+}

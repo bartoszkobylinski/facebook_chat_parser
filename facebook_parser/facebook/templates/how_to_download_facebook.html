@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="tutorial-container">
+        <article class="first-article">
+            <h3>Step by step: How to download Facebook Messenger Chat</h3>
+            <p>Follow these steps to get a copy of your Facebook Messenger Chat</p>
+        </article>
+        <article>
+            <div class="article-content">
+                <h3>Step 1</h3>
+                <p>Login to your <strong>Facbook account</strong> and click on a triangle in the right-top corner of your screen <strong>(1)</strong>. Choose your <strong>Settings (2)</strong>  and next, click on <strong>Your Facebook Information</strong> (3) </p>                
+            </div>
+            <div class="article-image">
+                <img src="{% static 'images/fb_down_1.png' %}" alt="how-to-download-facebook-messenger-picture-1">
+            </div>
+        </article>
+        <article>
+            <div class="article-content">
+                <h3>Step 2</h3>
+                <p>On this page you can select data you want to download from Facebook. You want to download only Facebook Messenger content so <strong>Deselect All</strong> and than mark Messages box (1). Mark type of file you want to download, choose <strong>JSON</strong> type and clik <strong>Create File</strong>(3).</p>
+            </div>
+            <div class="article-image">
+                <img src="{% static 'images/fb_down_2.png' %}" alt="how-to-download-facebook-meesenger-picture-2">
+            </div>
+        </article>
+        <article>
+            <div class="article-content">
+                <h3>Step 3</h3>
+            <p>Once your chats are ready (this process can take til 24h) you get <strong>notification</strong> (3) on your Facebook Page and you click on <strong>Available Copies</strong>  and you can <strong>download</strong> (3) your Facebook Messenger Chat </p>
+            
+            </div>
+            <div class="article-image">
+                <img src="{% static 'images/fb_down_3.jpeg' %}" alt="how-to-download-facebook-meesenger-picture-3">
+            </div>
+            
+        </article>
+
+        <a href="{% url 'index' %}" class="backwards-link">Go back and let's upload your facebook messages and analyze it together</a>
+    </div>
+
+    
+</body>
+</html>

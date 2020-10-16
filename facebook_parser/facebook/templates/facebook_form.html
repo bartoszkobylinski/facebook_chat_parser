@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/aef6646358.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="{% static 'js/populate.js' %}"></script>
     <title>Document</title>
 </head>
 <body>
@@ -14,7 +16,7 @@
     </nav>
     <main class="facebook-main">
         <section>
-            <h3>Do you chat on Facebook Messanger? Who doesn't? More than 1 bilion people on Earth do.</h3>
+            <h3>Do you chat on Facebook Messenger? Who doesn't? More than 1 bilion people on Earth do.</h3>
             <div class="wrapper">
                 <div class="chat-container">
                 <ul>
@@ -34,20 +36,15 @@
                         <h4>Let's have a look and upload your chat file below.</h4>
                         <form enctype="multipart/form-data" name="file_chat" method="post">
                             {% csrf_token %}
-                            {% if contact_form.errors %}
-                                {% for field in contact_form %}
-                                    {% for error in field.errors %}
-                                        <div class="alert alert-danger">
-                                            <strong>{{ error|escape }}</strong>
-                                        </div>
-                                    {% endfor %}
-                                {% endfor %}
-                            {% endif %}
+                            
                             {{ form.as_p }}
             
-                            <input id="upload-button" type="submit" value="upload">
+                            <input id="upload-button" type="submit" value="upload" onclick="changeText()">
                         </form>
                         <h4>If you don't know how to find your facebook file, here is information how you can get it.</h4>
+                        <button class="download-button">
+                            <a href="{% url 'download' %}"><i class="far fa-arrow-alt-circle-right arrow1" aria-hidden="true"></i></a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -56,10 +53,5 @@
     <footer>
         <p>You upload your file on your own responsibility</p>
     </footer>
-
-    
-    
-    
-
 </body>
 </html>
