@@ -7,13 +7,6 @@ class FacebookChat(models.Model):
     """
 
     chat_title = models.CharField(max_length=150)
-    participants_number = models.PositiveIntegerField(default=0)
-    gifs_number = models.PositiveIntegerField(default=0)
-    messages_number = models.PositiveIntegerField(default=0)
-    photos_number = models.PositiveIntegerField(default=0)
-    characters_number = models.PositiveIntegerField(default=0)
-    reactions_number = models.PositiveIntegerField(default=0)
-    links_number = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f"{self.chat_title} Facebook chat"
