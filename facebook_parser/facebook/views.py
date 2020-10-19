@@ -30,23 +30,13 @@ class UploadFileView(FormView):
         form = self.get_form(form_class)
         if form.is_valid():
             file = request.FILES["chat_file"]
-            try:
-                file = json.load(file)
-            except UnicodeDecodeError:
-                messages.error(self.request, "that is error")
+            file = json.load(file)
             fb_chat = FacebookChat()
             fb_chat.file = file
             fb_chat.messages
             words_dict = fb_chat.creating_dict_with_words_occurance_sorted_by_length()
             fb_chat_model = FacebookChatModel(
                 chat_title=fb_chat.get_fb_chat_title(),
-                participants_number=fb_chat.get_fb_chat_participants_number(),
-                gifs_number=fb_chat.get_fb_chat_total_gifs_number(),
-                messages_number=fb_chat.get_fb_chat_total_messages_number(),
-                photos_number=fb_chat.get_fb_chat_total_photos_number(),
-                characters_number=fb_chat.get_fb_chat_total_characters_number(),
-                reactions_number=fb_chat.get_fb_chat_reactions_number(),
-                links_number=fb_chat.get_fb_chat_total_links_number(),
             )
             fb_chat_model.save()
             for participant in fb_chat.get_fb_chat_participants():
