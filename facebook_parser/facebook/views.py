@@ -129,19 +129,19 @@ class ChartView(TemplateView):
         word = request.GET.get("word")
         if word:
             if len(word) == 4:
-                context["word"] = FourCharWord.objects.filter(word=word)
+                context["word"] = FourCharWord.objects.filter(word=word).order_by("-count")
             elif len(word) == 5:
-                context["word"] = FiveCharWord.objects.filter(word=word)
+                context["word"] = FiveCharWord.objects.filter(word=word).order_by("-count")
             elif len(word) == 6:
-                context["word"] = SixCharWord.objects.filter(word=word)
+                context["word"] = SixCharWord.objects.filter(word=word).order_by("-count")
             elif len(word) == 7:
-                context["word"] = SevenCharWord.objects.filter(word=word)
+                context["word"] = SevenCharWord.objects.filter(word=word).order_by("-count")
             elif len(word) == 8:
-                context["word"] = EightCharWord.objects.filter(word=word)
+                context["word"] = EightCharWord.objects.filter(word=word).order_by("-count")
             elif len(word) == 9:
-                context["word"] = NineCharWord.objects.filter(word=word)
+                context["word"] = NineCharWord.objects.filter(word=word).order_by("-count")
             elif len(word) == 10:
-                context["word"] = TenAndMoreCharWord.objects.filter(word=word)
+                context["word"] = TenAndMoreCharWord.objects.filter(word=word).order_by("-count")
         return self.render_to_response(context)
 
     def get_context_data(self, *args, **kwargs):
