@@ -20,11 +20,10 @@ class FacebookChat:
     def extend_class_messages_by_instance_messages(self):
         with open(self.file) as file:
             file = json.load(file)
-            print(len(file.get('messages', '')))
-            self.MESSAGES.extend(file.get("messages", ''))
+            FacebookChat.MESSAGES.extend(file.get("messages", ''))
     
     def correct_messages_decoding(self):
-        for message in self.MESSAGES:
+        for message in FacebookChat.MESSAGES:
             message.update(sender_name=self.correct_string_decoding(message.get('sender_name', '')))
             message.update(content=self.correct_string_decoding(message.get('content', '')))
 
@@ -34,7 +33,19 @@ class FacebookChat:
         except UnicodeDecodeError as uni_decode_error:
             return string.encode("utf-8")
     
-    def 
+    
+    def get_chat_title(self):
+        if not FacebookChat.TITLE:
+            with open(self.file) as file:
+                file = json.load(file)
+                FacebookChat.TITLE = file.get("title", "")
+        
+    def get_chat_participants(self):
+        if not FacebookChat.PARTICIPANTS:
+            with open(self.file) as file:
+                file = json.load(file)
+                for participant in file.get('participants', ''):
+                    FacebookChat.PARTICIPANTS.append(participant.get('name',''))
 
     def find_regex_expresion(self, regex_expression):
         counter = 0
@@ -62,7 +73,7 @@ print(f"that is len of a.MESSAGES {len(a.MESSAGES)}")
 
 
 '''
-
+'''
 file_folder = Path('/home/bart/PythonProjects/fb/facebook_parser/facebook/')
 file_to_open = file_folder/"test_file_pl.json"
 
@@ -75,7 +86,7 @@ with open(file_to_open) as file:
     f = open("test_file_pl_1.json", "w")
     file = json.dump(file, fp=f, indent=4)
     f.close()
-    
+'''
     
     
     
