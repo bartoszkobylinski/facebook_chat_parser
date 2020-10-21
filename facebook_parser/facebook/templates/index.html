@@ -329,6 +329,7 @@
                     <input type="submit" value="OK">
                 </form>
                 <div class="specific-word-result">
+                    <!--
                     {% for text in word %}
                         <div class="specific-word-result__user">
                             <p>{{ text.participant.name }}</p>
@@ -336,6 +337,21 @@
                             <p>{{ text.word }}</p>
                         </div>
                     {% endfor%}
+                    -->
+                    <table>
+                        <thead>
+                            <th>user</th>
+                            <th>counts</th>
+                            <th>word</th>
+                        </thead>
+                        {% for user in word %}
+                        <tr>
+                            <td>{{ user.participant.name }}</td>
+                            <td>{{ user.count }}</td>
+                            <td>{{ user.word  }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
                 </div>
                 
             </div>
