@@ -20,7 +20,10 @@ class FacebookChat:
     def extend_class_messages_by_instance_messages(self):
         with open(self.file) as file:
             file = json.load(file)
-            FacebookChat.MESSAGES.extend(file.get("messages", ''))
+            for message in file.get("messages", ""):
+                FacebookChat.MESSAGES.append(message)
+            
+
     
     def correct_messages_decoding(self):
         for message in FacebookChat.MESSAGES:
@@ -30,6 +33,8 @@ class FacebookChat:
     def correct_string_decoding(self, string):
         try:
             return string.encode("iso-8859-1").decode("utf-8")
+        except UnicodeEncodeError as uni_encode_error:
+            return string.encode("utf-8")
         except UnicodeDecodeError as uni_decode_error:
             return string.encode("utf-8")
     
@@ -68,6 +73,9 @@ class Participant(FacebookChat):
             if message.get("sender_name") == self.name:
                 messages.append(message)
         return messages
+
+    def get_messages_number(self):
+        return len(self.messages)
         
 
 
@@ -94,23 +102,18 @@ print(f"that is len of a.MESSAGES {len(a.MESSAGES)}")
 
 
 '''
-'''
+
 file_folder = Path('/home/bart/PythonProjects/fb/facebook_parser/facebook/')
-file_to_open = file_folder/"test_file_pl.json"
+file_to_open = file_folder/"miriam_text.json"
 
-with open(file_to_open) as file:
-    file = json.load(file)
-    messages = file['messages'][:25499]
-    file.pop('messages')
-    print(file.keys())
-    file.update(messages=messages)
-    f = open("test_file_pl_1.json", "w")
-    file = json.dump(file, fp=f, indent=4)
-    f.close()
-'''
-    
-    
-    
-    
+a = FacebookChat(file_to_open)
+a.extend_class_messages_by_instance_messages()
+a.correct_messages_decoding()
+a.get_chat_participants()
+participants = a.PARTICIPANTS
+a.get_chat_title()
 
-print("koniec")
+for participant in participants:
+    participant = Participant(participant)
+    message_num = participant.get_messages_number()
+    print(participant.messages)
