@@ -28,7 +28,7 @@ class FacebookChat:
             message.update(content=self.correct_string_decoding(message.get('content', '')))
 
     def correct_string_decoding(self, string):
-        try: 
+        try:
             return string.encode("iso-8859-1").decode("utf-8")
         except UnicodeDecodeError as uni_decode_error:
             return string.encode("utf-8")
@@ -53,6 +53,27 @@ class FacebookChat:
             result = re.match(regex_expression, message.get('content', ''))
             if result is not None:
                 pass
+
+
+class Participant(FacebookChat):
+
+    def __init__(self, name):
+        self.name = name
+
+
+    @property
+    def messages(self):
+        messages = []
+        for message in FacebookChat.MESSAGES:
+            if message.get("sender_name") == self.name:
+                messages.append(message)
+        return messages
+        
+
+
+
+
+
 
 '''  
 blabla=["Zadzwoniłeś do Aliny"]
