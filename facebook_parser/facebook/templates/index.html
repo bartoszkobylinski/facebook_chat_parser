@@ -1,399 +1,401 @@
 {% load static %}
+{% load custom_template_filter %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
     <script src="{% static 'js/populate.js' %}"></script>
-    <script src="{% static 'js/charts_display.js' %}"></script>
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Chatty</title>
 </head>
 <body>
     <nav>
         <h1>This is your chat statistic</h1>
     </nav>
-
+    
     <main class="index-main">
-        <h2>{{title}}</h2>
-        <div class="charts">
-            <div class="chart-container">
-                <div class="canvas-wrapper">
-                    <canvas id="myChartMessages" width="200" height="200"></canvas>
-                </div>
-                <div class="legend-wrapper">
-                    <table>
-                        <thead>
-                            <th colspan="2">Messages send by participants</th>
-                        </thead>
-                        <tbody>
-                            {% for user, message in user_messages_list %}
-                            <tr>
-                                <td>{{ user }}</td>
-                                <td>{{ message }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+        <div class="index-main-wrapper">
+            <div class="title-container">
+                <h2 class="title-h2">title:</h2><h2>{{title}}</h2>
             </div>
-            <div class="chart-container">
-                <div class="canvas-wrapper even-wrapper">
-                    <canvas id="myChartCharacters" width="200" height="200"></canvas>
-                </div>
-                <div class="legend-wrapper">
-                    <table>
-                        <thead>
-                            <th colspan="2">Characters used by participants</th>
-                        </thead>
-                        <tbody>
-                            {% for user, character in user_characters_list %}
-                            <tr>
-                                <td>{{ user }}</td>
-                                <td>{{ character }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="chart-container">
-                <div class="canvas-wrapper">
-                    <canvas id="myChartWords" width="200" height="200"></canvas>
-                </div>
-                <div class="legend-wrapper">
-                    <table>
-                        <thead>
-                            <th colspan="2">Words used by participants</th>
-                        </thead>
-                        <tbody>
-                            {% for user, word in user_words_list %}
-                            <tr>
-                                <td>{{ user }}</td>
-                                <td>{{ word }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="chart-container">
-                <div class="canvas-wrapper even-wrapper">
-                    <canvas id="myChartPhotos" width="200" height="200"></canvas>
-                </div>
-                <div class="legend-wrapper">
-                    <table>
-                        <thead>
-                            <th colspan="2">Photos send by participants</th>
-                        </thead>
-                        <tbody>
-                            {% for user, photo in user_photos_list %}
-                            <tr>
-                                <td>{{ user }}</td>
-                                <td>{{ photo }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="chart-container">
-                <div class="canvas-wrapper">
-                    <canvas id="myChartLinks" width="200" height="200"></canvas>
-                </div>
-                <div class="legend-wrapper">
-                    <table>
-                        <thead>
-                            <th colspan="2">Links send by participants</th>
-                        </thead>
-                        <tbody>
-                            {% for user, link in user_links_list %}
-                            <tr>
-                                <td>{{ user }}</td>
-                                <td>{{ link }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>   
-            <div class="chart-container">
-                <div class="canvas-wrapper even-wrapper">
-                    <canvas id="myChartGifs" width="200" height="200"></canvas>
-                </div>
-                <div class="legend-wrapper">
-                    <table>
-                        <thead>
-                            <th colspan="2">Gifs send by participants</th>
-                        </thead>
-                        <tbody>
-                            {% for user, gif in user_gifs_list %}
-                            <tr>
-                                <td>{{ user }}</td>
-                                <td>{{ gif }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div> 
-            <div class="stat-container">
-                <div class="reaction">
-                    <table>
-                        <thead>
-                            <th>Most common reaction used in chat</th>
-                        </thead>
-                        <tbody>
-                            {% for user, react, number in reaction_list %}
-                            <tr>
-                                <td>{{ user }}</td>
-                                <td>{{ number }}</td>
-                                <td>{{ react }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="words-option">
-                <select name="words" id="words-select" onchange="populate()">
-                    <option value="4 letters">Most common 4-characters words used by participants</option>
-                    <option value="5 letters">Most common 5-characters words used by participants</option>
-                    <option value="6 letters">Most common 6-characters words used by participants</option>
-                    <option value="7 letters">Most common 7-characters words used by participants</option>
-                    <option value="8 letters">Most common 8-characters words used by participants</option>
-                    <option value="9 letters">Most common 9-characters words used by participants</option>
-                    <option value="10 letters">Most common 10-characters words used by participants</option>
-                </select>
-            </div>
-            <div class="stat-container stats-4-words hide-stat">
-                <table class="word-occurence-table">
-                    <thead>
-                        <th>user</th>
-                        <th>word</th>
-                        <th>count</th>
-                    </thead>
-                    <tbody>
-                        {% for x in four_char_words %}
-                        <tr>
-                            <td rowspan="4"> {{x.0}}</td>    
-                                {% for y in x.1 %}
-                                    <tr>
-                                        <td>{{ y.word }}</td>
-                                        <td>{{ y.count }}</td>
-                                    </tr>
+            <div class="charts">
+                <div class="chart-container">
+                    <div class="canvas-wrapper">
+                        <canvas id="myChartMessages" width="200" height="200"></canvas>
+                    </div>
+                    <div class="legend-wrapper">
+                        <table>
+                            <thead>
+                                <th colspan="2">Messages send by participants</th>
+                            </thead>
+                            <tbody>
+                                {% for user, message in user_messages_list %}
+                                <tr>
+                                    <td>{{ user }}</td>
+                                    <td>{{ message }}</td>
+                                </tr>
                                 {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>       
-            </div>
-            
-            <div class="stat-container stats-5-words hide-stat">
-                <table class="word-occurence-table">
-                    <thead>
-                        <th>user</th>
-                        <th>word</th>
-                        <th>count</th>
-                    </thead>
-                    <tbody>
-                        {% for x in five_char_words %}
-                        <tr>
-                            <td rowspan="4"> {{x.0}}</td>    
-                                {% for y in x.1 %}
-                                    <tr>
-                                        <td>{{ y.word }}</td>
-                                        <td>{{ y.count }}</td>
-                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="canvas-wrapper even-wrapper">
+                        <canvas id="myChartCharacters" width="200" height="200"></canvas>
+                    </div>
+                    <div class="legend-wrapper">
+                        <table>
+                            <thead>
+                                <th colspan="2">Characters used by participants</th>
+                            </thead>
+                            <tbody>
+                                {% for user, character in user_characters_list %}
+                                <tr>
+                                    <td>{{ user }}</td>
+                                    <td>{{ character }}</td>
+                                </tr>
                                 {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table> 
-            </div>
-            <div class="stat-container stats-6-words hide-stat">
-                <table class="word-occurence-table">
-                    <thead>
-                        <th>user</th>
-                        <th>word</th>
-                        <th>count</th>
-                    </thead>
-                    <tbody>
-                        {% for x in six_char_words %}
-                        <tr>
-                            <td rowspan="4"> {{x.0}}</td>    
-                                {% for y in x.1 %}
-                                    <tr>
-                                        <td>{{ y.word }}</td>
-                                        <td>{{ y.count }}</td>
-                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="canvas-wrapper">
+                        <canvas id="myChartWords" width="200" height="200"></canvas>
+                    </div>
+                    <div class="legend-wrapper">
+                        <table>
+                            <thead>
+                                <th colspan="2">Words used by participants</th>
+                            </thead>
+                            <tbody>
+                                {% for user, word in user_words_list %}
+                                <tr>
+                                    <td>{{ user }}</td>
+                                    <td>{{ word }}</td>
+                                </tr>
                                 {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table> 
-            </div>
-            <div class="stat-container stats-7-words hide-stat">
-                <table class="word-occurence-table">
-                    <thead>
-                        <th>user</th>
-                        <th>word</th>
-                        <th>count</th>
-                    </thead>
-                    <tbody>
-                        {% for x in seven_char_words %}
-                        <tr>
-                            <td rowspan="4"> {{x.0}}</td>    
-                                {% for y in x.1 %}
-                                    <tr>
-                                        <td>{{ y.word }}</td>
-                                        <td>{{ y.count }}</td>
-                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="canvas-wrapper even-wrapper">
+                        <canvas id="myChartPhotos" width="200" height="200"></canvas>
+                    </div>
+                    <div class="legend-wrapper">
+                        <table>
+                            <thead>
+                                <th colspan="2">Photos send by participants</th>
+                            </thead>
+                            <tbody>
+                                {% for user, photo in user_photos_list %}
+                                <tr>
+                                    <td>{{ user }}</td>
+                                    <td>{{ photo }}</td>
+                                </tr>
                                 {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table> 
-            </div>
-            <div class="stat-container stats-8-words hide-stat">
-                <table class="word-occurence-table">
-                    <thead>
-                        <th>user</th>
-                        <th>word</th>
-                        <th>count</th>
-                    </thead>
-                    <tbody>
-                        {% for x in eight_char_words %}
-                        <tr>
-                            <td rowspan="4"> {{x.0}}</td>    
-                                {% for y in x.1 %}
-                                    <tr>
-                                        <td>{{ y.word }}</td>
-                                        <td>{{ y.count }}</td>
-                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="canvas-wrapper">
+                        <canvas id="myChartLinks" width="200" height="200"></canvas>
+                    </div>
+                    <div class="legend-wrapper">
+                        <table>
+                            <thead>
+                                <th colspan="2">Links send by participants</th>
+                            </thead>
+                            <tbody>
+                                {% for user, link in user_links_list %}
+                                <tr>
+                                    <td>{{ user }}</td>
+                                    <td>{{ link }}</td>
+                                </tr>
                                 {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table> 
-            </div>
-            <div class="stat-container stats-9-words hide-stat">
-                <table class="word-occurence-table">
-                    <thead>
-                        <th>user</th>
-                        <th>word</th>
-                        <th>count</th>
-                    </thead>
-                    <tbody>
-                        {% for x in nine_char_words %}
-                        <tr>
-                            <td rowspan="4"> {{x.0}}</td>    
-                                {% for y in x.1 %}
-                                    <tr>
-                                        <td>{{ y.word }}</td>
-                                        <td>{{ y.count }}</td>
-                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>   
+                <div class="chart-container">
+                    <div class="canvas-wrapper even-wrapper">
+                        <canvas id="myChartGifs" width="200" height="200"></canvas>
+                    </div>
+                    <div class="legend-wrapper">
+                        <table>
+                            <thead>
+                                <th colspan="2">Gifs send by participants</th>
+                            </thead>
+                            <tbody>
+                                {% for user, gif in user_gifs_list %}
+                                <tr>
+                                    <td>{{ user }}</td>
+                                    <td>{{ gif }}</td>
+                                </tr>
                                 {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table> 
-            </div>
-            <div class="stat-container stats-10-words hide-stat">
-                <table class="word-occurence-table">
-                    <thead>
-                        <th>user</th>
-                        <th>word</th>
-                        <th>count</th>
-                    </thead>
-                    <tbody>
-                        {% for x in ten_char_words %}
-                        <tr>
-                            <td rowspan="4"> {{x.0}}</td>    
-                                {% for y in x.1 %}
-                                    <tr>
-                                        <td>{{ y.word }}</td>
-                                        <td>{{ y.count }}</td>
-                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> 
+                <div class="stat-container">
+                    <div class="reaction">
+                        <table>
+                            <thead>
+                                <th colspan="3">Most common reaction used in chat</th>
+                            </thead>
+                            <tbody>
+                                {% for user, react, number in reaction_list %}
+                                <tr>
+                                    <td>{{ user }}</td>
+                                    <td>{{ number }}</td>
+                                    <td>{{ react }}</td>
+                                </tr>
                                 {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table> 
-            </div>
-            <div class="word-occurence-form">
-                <form class="specific-word-form" action="" method="get">
-                    <label for="word">Word to search:</label>
-                    <input type="text" name="word" id="word" value="{{word}} " placeholder="Type word here">
-                    <input type="submit" value="OK">
-                </form>
-                <div class="specific-word-result">
-                    <!--
-                    {% for text in word %}
-                        <div class="specific-word-result__user">
-                            <p>{{ text.participant.name }}</p>
-                            <p>{{ text.count }}</p>
-                            <p>{{ text.word }}</p>
-                        </div>
-                    {% endfor%}
-                    -->
-                    <table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="words-option">
+                    <select name="words" id="words-select" onchange="populate()">
+                        <option value="4 letters">Most common 4-characters words used by participants</option>
+                        <option value="5 letters">Most common 5-characters words used by participants</option>
+                        <option value="6 letters">Most common 6-characters words used by participants</option>
+                        <option value="7 letters">Most common 7-characters words used by participants</option>
+                        <option value="8 letters">Most common 8-characters words used by participants</option>
+                        <option value="9 letters">Most common 9-characters words used by participants</option>
+                        <option value="10 letters">Most common 10-characters words used by participants</option>
+                    </select>
+                </div>
+                <div class="stat-container stats-4-words hide-stat">
+                    <table class="word-occurence-table">
                         <thead>
                             <th>user</th>
-                            <th>counts</th>
                             <th>word</th>
+                            <th>count</th>
                         </thead>
-                        {% for user in word %}
-                        <tr>
-                            <td>{{ user.participant.name }}</td>
-                            <td>{{ user.count }}</td>
-                            <td>{{ user.word  }}</td>
-                        </tr>
-                        {% endfor %}
-                    </table>
+                        <tbody>
+                            {% for x in four_char_words %}
+                            <tr>
+                                <td rowspan="4"> {{x.0}}</td>    
+                                    {% for y in x.1 %}
+                                        <tr>
+                                            <td>{{ y.word }}</td>
+                                            <td>{{ y.count }}</td>
+                                        </tr>
+                                    {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>       
+                </div>
+                
+                <div class="stat-container stats-5-words hide-stat">
+                    <table class="word-occurence-table">
+                        <thead>
+                            <th>user</th>
+                            <th>word</th>
+                            <th>count</th>
+                        </thead>
+                        <tbody>
+                            {% for x in five_char_words %}
+                            <tr>
+                                <td rowspan="4"> {{x.0}}</td>    
+                                    {% for y in x.1 %}
+                                        <tr>
+                                            <td>{{ y.word }}</td>
+                                            <td>{{ y.count }}</td>
+                                        </tr>
+                                    {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+                <div class="stat-container stats-6-words hide-stat">
+                    <table class="word-occurence-table">
+                        <thead>
+                            <th>user</th>
+                            <th>word</th>
+                            <th>count</th>
+                        </thead>
+                        <tbody>
+                            {% for x in six_char_words %}
+                            <tr>
+                                <td rowspan="4"> {{x.0}}</td>    
+                                    {% for y in x.1 %}
+                                        <tr>
+                                            <td>{{ y.word }}</td>
+                                            <td>{{ y.count }}</td>
+                                        </tr>
+                                    {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+                <div class="stat-container stats-7-words hide-stat">
+                    <table class="word-occurence-table">
+                        <thead>
+                            <th>user</th>
+                            <th>word</th>
+                            <th>count</th>
+                        </thead>
+                        <tbody>
+                            {% for x in seven_char_words %}
+                            <tr>
+                                <td rowspan="4"> {{x.0}}</td>    
+                                    {% for y in x.1 %}
+                                        <tr>
+                                            <td>{{ y.word }}</td>
+                                            <td>{{ y.count }}</td>
+                                        </tr>
+                                    {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+                <div class="stat-container stats-8-words hide-stat">
+                    <table class="word-occurence-table">
+                        <thead>
+                            <th>user</th>
+                            <th>word</th>
+                            <th>count</th>
+                        </thead>
+                        <tbody>
+                            {% for x in eight_char_words %}
+                            <tr>
+                                <td rowspan="4"> {{x.0}}</td>    
+                                    {% for y in x.1 %}
+                                        <tr>
+                                            <td>{{ y.word }}</td>
+                                            <td>{{ y.count }}</td>
+                                        </tr>
+                                    {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+                <div class="stat-container stats-9-words hide-stat">
+                    <table class="word-occurence-table">
+                        <thead>
+                            <th>user</th>
+                            <th>word</th>
+                            <th>count</th>
+                        </thead>
+                        <tbody>
+                            {% for x in nine_char_words %}
+                            <tr>
+                                <td rowspan="4"> {{x.0}}</td>    
+                                    {% for y in x.1 %}
+                                        <tr>
+                                            <td>{{ y.word }}</td>
+                                            <td>{{ y.count }}</td>
+                                        </tr>
+                                    {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table> 
+                </div>
+                <div class="stat-container stats-10-words hide-stat">
+                    <table class="word-occurence-table">
+                        <thead>
+                            <th>user</th>
+                            <th>word</th>
+                            <th>count</th>
+                        </thead>
+                        <tbody>
+                            {% for x in ten_char_words %}
+                            <tr>
+                                <td rowspan="4"> {{x.0}}</td>    
+                                    {% for y in x.1 %}
+                                        <tr>
+                                            <td>{{ y.word|default_if_none:"-" }}</td>
+                                            <td>{{ y.count|default_if_none:"0" }}</td>
+                                        </tr>
+                                    {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table> 
                 </div>
                 
             </div>
+            <div class="words-analytics">
+                <table>
+                    <thead>
+                        <th>user</th>
+                        <th>messages number</th>
+                        <th>words number</th>
+                        <th>characters number</th>
+                        <th>words pr message</th>
+                        <th>characters pr word</th>
+                    </thead>
+                    <tbody>
+                    {% for user in message_statistic %}
+                        <tr>
+                            <td>{{user.0}}</td>
+                            <td>{{user.1}}</td>
+                            <td>{{user.2}}</td>
+                            <td>{{user.3}}</td>
+                            <td>{{user.2|divideby:user.1}}</td>
+                            <td>{{user.3|divideby:user.2}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+    
+        <div class="delete">
+            <button><a href="{% url 'delete' %}">Delete</a></button>
         </div>
-    </div>
+        </div>
     </main>
-
-    <div class="delete">
-        <button><a href="{% url 'delete' %}">Delete?</a></button>
-    </div>
+    
+    
+    
+    {{ users_list|json_script:"users_list" }}
+    {{ messages_list|json_script:"messages_list"}}
+    {{ characters_list|json_script:"characters_list"}}
+    {{ words_list|json_script:"words_list" }}
+    {{ photos_list|json_script:"photos_list" }}
+    {{ links_list|json_script:"links_list" }}
+    {{ gifs_list|json_script:"gifs_list" }}
+    {{ charts_colors_list|json_script:"charts_colors_list" }}
+    {{ borders_color_list|json_script:"borders_color_list" }}
+    
     
 <script>
+const usersList = JSON.parse(document.getElementById('users_list').textContent);
+const messagesList = JSON.parse(document.getElementById('messages_list').textContent);
+const charactersList = JSON.parse(document.getElementById('characters_list').textContent);
+const wordsList = JSON.parse(document.getElementById('words_list').textContent);
+const photosList = JSON.parse(document.getElementById('photos_list').textContent);
+const linksList = JSON.parse(document.getElementById('links_list').textContent);
+const gifsList = JSON.parse(document.getElementById('gifs_list').textContent);
+const backgroundColorsList = JSON.parse(document.getElementById('charts_colors_list').textContent);
+const bordersColorsList = JSON.parse(document.getElementById('borders_color_list').textContent);
+
+
+
 var ctx = document.getElementById('myChartMessages').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: {{ users_list|safe}},
+        labels: usersList,
         datasets: [{
             label: '',
-            data: {{messages_list|safe}},
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+            data: messagesList,
+            backgroundColor: backgroundColorsList,
+            borderColor: bordersColorsList,
             borderWidth: 1
         }]
     },
@@ -413,32 +415,12 @@ var ctx = document.getElementById('myChartCharacters').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: {{ users_list|safe}},
+        labels: usersList,
         datasets: [{
             label: '',
-            data: {{characters_list|safe}},
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+            data: charactersList,
+            backgroundColor: backgroundColorsList,
+            borderColor: bordersColorsList,
             borderWidth: 1
         }]
     },
@@ -457,32 +439,12 @@ var ctx = document.getElementById('myChartWords').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: {{ users_list|safe}},
+        labels: usersList,
         datasets: [{
             label: '',
-            data: {{words_list|safe}},
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+            data: wordsList,
+            backgroundColor: backgroundColorsList,
+            borderColor: bordersColorsList,
             borderWidth: 1
         }]
     },
@@ -501,32 +463,12 @@ var ctx = document.getElementById('myChartPhotos').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: {{ users_list|safe}},
+        labels: usersList,
         datasets: [{
             label: '',
-            data: {{photos_list|safe}},
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+            data: photosList,
+            backgroundColor: backgroundColorsList,
+            borderColor: bordersColorsList,
             borderWidth: 1
         }]
     },
@@ -545,32 +487,12 @@ var ctx = document.getElementById('myChartLinks').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: {{ users_list|safe}},
+        labels: usersList,
         datasets: [{
             label: '',
-            data: {{links_list|safe}},
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+            data: linksList,
+            backgroundColor: backgroundColorsList,
+            borderColor: bordersColorsList,
             borderWidth: 1
         }]
     },
@@ -589,32 +511,12 @@ var ctx = document.getElementById('myChartGifs').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: {{ users_list|safe}},
+        labels: usersList,
         datasets: [{
             label: '',
-            data: {{gifs_list|safe}},
-            backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 0.8)',
-                'rgba(255, 206, 86, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(153, 102, 255, 0.8)',
-                'rgba(255, 159, 64, 0.8)',
-                'rgba(75, 192, 192, 0.8)',
-                'rgba(153, 102, 255, 0.8)',
-                'rgba(255, 159, 64, 0.8)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+            data: gifsList,
+            backgroundColor: backgroundColorsList,
+            borderColor: bordersColorsList,
             borderWidth: 1
         }]
     },

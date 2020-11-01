@@ -1,5 +1,6 @@
 import json
 import time
+from itertools import cycle
 from time import process_time
 from collections import Counter
 from django.views.generic import FormView, TemplateView
@@ -179,6 +180,8 @@ class ChartView(TemplateView):
             eight_char_word_list.append(eight_char_words)
             nine_char_word_list.append(nine_char_words)
             ten_char_word_list.append(ten_char_words)
+        charts_colors_list = self.create_color_list_for_chart(users_list)
+        charts_border_colors_list = self.create_color_border_list_for_chat(charts_colors_list)
         context.update(title=facebook_chat.chat_title)
         context.update(reaction_list=sorted(zip(users_list, reaction_list, numbers_react_list), key=lambda x: x[2],
                                             reverse=True))
@@ -202,7 +205,35 @@ class ChartView(TemplateView):
         context.update(eight_char_words=list(zip(users_list, eight_char_word_list)))
         context.update(nine_char_words=list(zip(users_list, nine_char_word_list)))
         context.update(ten_char_words=list(zip(users_list, ten_char_word_list)))
+        context.update(
+            message_statistic=sorted(
+                zip(users_list, messages_list, words_list, characters_list), key=lambda x: x[1], reverse=True))
+        context.update(charts_colors_list=charts_colors_list)
+        context.update(borders_color_list=charts_border_colors_list)
         return context
+
+    def create_color_list_for_chart(self, user_list):
+    
+        colors_list = ['rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)'
+        ]
+
+        colors = cycle(colors_list)
+        chart_colors_list = [
+            next(colors) for user in range(len(user_list))
+        ]
+        return chart_colors_list
+
+    def create_color_border_list_for_chat(self, colors_list):
+        border_color_list = [opacity.replace("0.6", "1") for opacity in colors_list]
+        return border_color_list
 
 
 class DeleteFaceView(TemplateView):
