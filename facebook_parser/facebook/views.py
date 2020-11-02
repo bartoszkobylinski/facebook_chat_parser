@@ -1,7 +1,6 @@
 import json
 import time
 from itertools import cycle
-from time import process_time
 from collections import Counter
 from django.views.generic import FormView, TemplateView
 from facebook.forms import FacebookChatForm
@@ -78,9 +77,9 @@ class UploadFileView(FormView):
                     facebook_chat=facebook_chat_model,
                     )
                 participant_model.save()
-                
                 for key, value in words_dict.get(participant, "").items():
-                    for word in Counter(value).most_common(3):
+                    occurrence = 3
+                    for word in Counter(value).most_common(occurrence):
                         if key == "four":
                             this_word = FourCharWord(participant=participant_model, count=word[1], word=word[0])
                             this_word.save()
@@ -90,6 +89,7 @@ class UploadFileView(FormView):
                         elif key == "six":
                             this_word = SixCharWord(participant=participant_model, count=word[1], word=word[0])
                             this_word.save()
+
                         elif key == "seven":
                             this_word = SevenCharWord(participant=participant_model, count=word[1], word=word[0])
                             this_word.save()
@@ -213,18 +213,17 @@ class ChartView(TemplateView):
         return context
 
     def create_color_list_for_chart(self, user_list):
-    
-        colors_list = ['rgba(255, 99, 132, 0.6)',
-        'rgba(54, 162, 235, 0.6)',
-        'rgba(255, 206, 86, 0.6)',
-        'rgba(75, 192, 192, 0.6)',
-        'rgba(153, 102, 255, 0.6)',
-        'rgba(255, 159, 64, 0.6)',
-        'rgba(75, 192, 192, 0.6)',
-        'rgba(153, 102, 255, 0.6)',
-        'rgba(255, 159, 64, 0.6)'
-        ]
 
+        colors_list = ['rgba(255, 99, 132, 0.6)',
+                       'rgba(54, 162, 235, 0.6)',
+                       'rgba(255, 206, 86, 0.6)',
+                       'rgba(75, 192, 192, 0.6)',
+                       'rgba(153, 102, 255, 0.6)',
+                       'rgba(255, 159, 64, 0.6)',
+                       'rgba(75, 192, 192, 0.6)',
+                       'rgba(153, 102, 255, 0.6)',
+                       'rgba(255, 159, 64, 0.6)'
+                       ]
         colors = cycle(colors_list)
         chart_colors_list = [
             next(colors) for user in range(len(user_list))

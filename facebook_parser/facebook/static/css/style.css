@@ -1,5 +1,5 @@
 body{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     background-image: linear-gradient( rgb(166, 223, 247), rgba(255,255,255) );
     color: #0c0c0c;
     height: 100vh;
@@ -21,8 +21,21 @@ main h2{
 }
 .index-main{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 }
+.title-container{
+    display: flex;
+    justify-content: center;
+}
+.title-container h2{
+    padding: 1rem 0.5rem;
+}
+.title-h2{
+    text-transform: capitalize;
+    color: grey;
+    font-weight: 200;
+}
+
 .charts{
     display: flex;
     flex-direction: column;
@@ -32,7 +45,7 @@ p{
 }
 .canvas-wrapper{
     position: relative;
-    width: 25%;
+    width: 20%;
 }
 .chart-container,
 .stat-container{
@@ -57,12 +70,16 @@ p{
 }
 th{
     text-transform: uppercase;
-    padding: 0.4rem;
+    padding: 0.8rem;
     font-size: 1.5rem;
+    background-color: rgb(98, 195, 237);
+    text-align: center;
 }
 td{
-    padding: 0.4rem;
+    padding: 0.8rem;
     font-size: 1.5rem;
+    background-color:rgb(140, 211, 242);
+    text-align: center;
 }
 .even-wrapper{
     order: 2;
@@ -71,29 +88,40 @@ td{
     text-align: center; 
     margin: 3rem; 
 }
-.delete button{
+.delete button,
+.delete-page-wrapper button{
     text-transform: uppercase;
     background-color: #0084ff;
     color: #fff;
     width: 15rem;
     border: none;
     border-radius: 20px;
-    font-family: "Open Sans", sans-serif;
     font-weight: 700;
     font-style: normal;
     font-size: 23px;
     padding: 1.5rem;
 }
-.delete button a{
+.delete button a,
+.delete-page-wrapper button a{
     text-decoration: none;
+    color: #0c0c0c;
+}
+.delete button:hover,
+.delete-page-wrapper button:hover{
+    background-color:  rgb(140, 211, 242);
+}
+.delete button a:hover,
+.delete-page-wrapper button a:hover{
+    color: #fff;
 }
 .words-option{
     display: flex;
     justify-content: center;
+    margin: 2rem 0rem;
 }
 .words-option select{
     margin: 1rem;
-    background-color: burlywood;
+    background-color: rgb(98, 195, 237);
     padding: 1rem;
     border: none;
     font-size: 1.5rem;
@@ -106,16 +134,11 @@ td{
 .stats-4-words{
     display: flex;
 }
-.word-occurence-table{
-    border-collapse: collapse;
-}.word-occurence-table th, td{
+
+.word-occurence-table th, td{
     padding: 0.5rem 2rem;
 }
-.word-occurence-table,
-.word-occurence-table th,
-.word-occurence-table td{
-    border: 1px solid #0c0c0c;
-}
+
 .word-occurence-form{
     display: flex;
     flex-direction: column;
@@ -139,6 +162,11 @@ td{
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+}
+
+.words-analytics{
+    display: flex;
+    margin: 3rem 0rem;
 }
 
 
@@ -237,7 +265,6 @@ form{
     width: 15rem;
     border: none;
     border-radius: 20px;
-    font-family: "Open Sans", sans-serif;
     font-weight: 700;
     font-style: normal;
     font-size: 23px;
@@ -254,15 +281,25 @@ footer p {
     border: none;
     padding: 0.75rem;
 }
-.download-button a{
+.download-button{
     color: #0084ff;
     text-decoration: none;
     font-size: 3.5rem;
+}
+.download-button i{
+    color: #0084ff;
+}
+.download-button i::before{
+    background: transparent;
 }
 .errorlist li{
     border: 1px solid  #ff0033;
     color: #ff0033 ;
     font-weight: 900;
+}
+.urgent{
+    text-transform: uppercase;
+    font-size: 1.5rem;
 }
 
 /*-------------------download-page--------------*/
@@ -280,6 +317,7 @@ article{
 article p{
     letter-spacing: 0.1rem;
     font-weight: 500;
+    padding-right: 1rem;
 }
 .first-article{
     display: flex;
@@ -290,6 +328,12 @@ article p{
 .first-article h3{
     font-size: 2rem;
     text-align: center;
+}
+.green-arrow{
+    color: rgb(67, 160, 71);
+}
+.red-arrow{
+    color: rgb(254, 22, 67);
 }
 
 .article-content{
@@ -311,4 +355,21 @@ article p{
     background-color: #0084ff;
     padding: 1rem;
     margin: 1rem;
+}
+
+/* ------------------------delete-page--------------- */
+.delete-page{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+.delete-page-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+}
+.delete-page-wrapper p{
+    text-transform: uppercase;
+    font-size: 2rem;
 }

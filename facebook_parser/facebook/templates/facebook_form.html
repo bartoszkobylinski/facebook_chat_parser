@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <script src="{% static 'js/populate.js' %}"></script>
-    <title>Document</title>
+    <title>Chatty</title>
 </head>
 <body>
     <nav>
@@ -41,7 +41,7 @@
             
                             <input id="upload-button" type="submit" value="upload" onclick="changeText()">
                         </form>
-                        <h4>If you don't know how to find your facebook file, here is information how you can get it.</h4>
+                        <h4>If you <span class="urgent">don't</span> know how to find your facebook file, here is information how you can get it.</h4>
                         <button class="download-button">
                             <a href="{% url 'download' %}"><i class="far fa-arrow-alt-circle-right arrow1" aria-hidden="true"></i></a>
                         </button>

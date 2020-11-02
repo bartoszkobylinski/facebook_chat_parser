@@ -21,3 +21,5 @@ def validate_json_schema(uploaded_file):
                 validate(instance=fb_chat, schema=schema)
             except ValidationError as valid_error:
                 return f"{valid_error} Your file is corrupted. Try another one"
+
+
