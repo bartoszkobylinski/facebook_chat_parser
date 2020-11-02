@@ -40,8 +40,8 @@ class FourCharWord(models.Model):
     """
 
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
-    count = models.PositiveIntegerField()
-    word = models.CharField(max_length=4)
+    count = models.PositiveIntegerField(default=0)
+    word = models.CharField(max_length=4, default='-')
 
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
@@ -53,8 +53,8 @@ class FiveCharWord(models.Model):
     """
 
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
-    count = models.PositiveIntegerField()
-    word = models.CharField(max_length=5)
+    count = models.PositiveIntegerField(default=0)
+    word = models.CharField(max_length=5, default="-")
 
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
@@ -66,8 +66,8 @@ class SixCharWord(models.Model):
     """
 
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
-    count = models.PositiveIntegerField()
-    word = models.CharField(max_length=6)
+    count = models.PositiveIntegerField(default=0)
+    word = models.CharField(max_length=6, default='-')
 
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
@@ -79,8 +79,8 @@ class SevenCharWord(models.Model):
     """
 
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
-    count = models.PositiveIntegerField()
-    word = models.CharField(max_length=7)
+    count = models.PositiveIntegerField(default=0)
+    word = models.CharField(max_length=7, default='-')
 
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
@@ -92,8 +92,8 @@ class EightCharWord(models.Model):
     """
 
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
-    count = models.PositiveIntegerField()
-    word = models.CharField(max_length=8)
+    count = models.PositiveIntegerField(default=0)
+    word = models.CharField(max_length=8, default='-')
 
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
@@ -105,8 +105,8 @@ class NineCharWord(models.Model):
     """
 
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
-    count = models.PositiveIntegerField()
-    word = models.CharField(max_length=9)
+    count = models.PositiveIntegerField(default=0)
+    word = models.CharField(max_length=9, default='-')
 
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"
@@ -118,8 +118,8 @@ class TenAndMoreCharWord(models.Model):
     """
 
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
-    count = models.PositiveIntegerField()
-    word = models.CharField(max_length=500)
+    count = models.PositiveIntegerField(default=0)
+    word = models.CharField(max_length=40, default="-")
 
     def __str__(self):
         return f"{self.participant} used {self.count} times {self.word}"

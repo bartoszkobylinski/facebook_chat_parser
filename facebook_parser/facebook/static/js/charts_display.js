@@ -89,7 +89,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: usersList,
         datasets: [{
-            label: '',
+            label: 'Photos number',
             data: photosList,
             backgroundColor: backgroundColorsList,
             borderColor: bordersColorsList,
@@ -113,7 +113,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: usersList,
         datasets: [{
-            label: '',
+            label: 'Links number',
             data: linksList,
             backgroundColor: backgroundColorsList,
             borderColor: bordersColorsList,
@@ -137,7 +137,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: usersList,
         datasets: [{
-            label: '',
+            label: 'Gifs numbers',
             data: gifsList,
             backgroundColor: backgroundColorsList,
             borderColor: bordersColorsList,
