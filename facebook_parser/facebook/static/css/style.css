@@ -277,19 +277,19 @@ footer{
 footer p {
     margin-top: 2rem;
 }
-.download-button{
+.linkbutton-to-downloading_fb{
     border: none;
     padding: 0.75rem;
 }
-.download-button{
+.linkbutton-to-downloading_fb{
     color: #0084ff;
     text-decoration: none;
     font-size: 3.5rem;
 }
-.download-button i{
+.linkbutton-to-downloading_fb i{
     color: #0084ff;
 }
-.download-button i::before{
+.linkbutton-to-downloading_fb i::before{
     background: transparent;
 }
 .errorlist li{

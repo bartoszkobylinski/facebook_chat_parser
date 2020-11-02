@@ -1,0 +1,22 @@
+{% load static %}
+{% load custom_template_filter %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chatty, place where you can find your Facebook Messenger statistics">
+    {% block script %}{% endblock %}
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Chatty</title>
+</head>
+<body>
+    <nav>
+        <h1>This is your chat statistic</h1>
+    </nav>
+    
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

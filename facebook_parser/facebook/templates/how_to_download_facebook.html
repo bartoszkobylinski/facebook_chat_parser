@@ -1,14 +1,6 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
-    <title>Document</title>
-</head>
-<body>
+{% block content %}
 
     <div class="tutorial-container">
         <article class="first-article">
@@ -21,7 +13,7 @@
                 <p>Login to your <strong>Facbook account</strong> and click on a triangle in the right-top corner of your screen <strong>(1)</strong>. Choose your <strong>Settings (2)</strong>  and next, click on <strong>Your Facebook Information</strong> (3) </p>                
             </div>
             <div class="article-image">
-                <img src="{% static 'images/fb_down_1.png' %}" alt="how-to-download-facebook-messenger-picture-1">
+                <img src="{% static 'images/fb_down_1.webp' %}" alt="how-to-download-facebook-messenger-picture-1">
             </div>
         </article>
         <article>
@@ -30,7 +22,7 @@
                 <p>On this page you can select data you want to download from Facebook. You want to download only Facebook Messenger content so <strong>Deselect All</strong> and than mark Messages box (1). Mark type of file you want to download, choose <strong>JSON</strong> type and clik <strong>Create File</strong>(3).</p>
             </div>
             <div class="article-image">
-                <img src="{% static 'images/fb_down_2.png' %}" alt="how-to-download-facebook-meesenger-picture-2">
+                <img src="{% static 'images/fb_down_2.webp' %}" alt="how-to-download-facebook-meesenger-picture-2">
             </div>
         </article>
         <article>
@@ -40,7 +32,7 @@
             
             </div>
             <div class="article-image">
-                <img src="{% static 'images/fb_down_3.jpeg' %}" alt="how-to-download-facebook-meesenger-picture-3">
+                <img src="{% static 'images/fb_down_3.webp' %}" alt="how-to-download-facebook-meesenger-picture-3">
             </div>
             
         </article>
@@ -50,7 +42,7 @@
                 <p>When you have downloaded your facebook chat archive. You have to unzip it using right mouse button an choosing <strong>Extract Here</strong>. After extracting process you will get folder named <strong>messages</strong>.</p>
             </div>
             <div class="article-image">
-                <img src="{% static 'images/fb_down_4.png' %}" alt="how-to-download-facebook-meesenger-picture-4">
+                <img src="{% static 'images/fb_down_4.webp' %}" alt="how-to-download-facebook-meesenger-picture-4">
             </div>
         </article>
         <article>
@@ -59,7 +51,7 @@
                 <p>When you open messages folder you will see most likely 5 folders. One of them is going to be <strong>inbox</strong>. In <strong>inbox</strong> folder you will have all messages organise in folders. You can see two kinds of folders. One kind with name contains only small letters shows witch is shown with <strong class="green-arrow">green arrows</strong> and this is where required file is stored. In the folder where name contain capital letter marked with <strong class="red-arrow">red arrows</strong> you can find pictures, gifs used in that conversation.</p>
             </div>
             <div class="article-image">
-                <img src="{% static 'images/fb_down_5.png' %}" alt="how-to-download-facebook-meesenger-picture-5">
+                <img src="{% static 'images/fb_down_5.webp' %}" alt="how-to-download-facebook-meesenger-picture-5">
             </div>
         </article>
         <article>
@@ -68,13 +60,10 @@
                 <p>Inside folder where name contain only small letters you will find a file named <strong>message_1.json</strong>  or if you have long conversation it may be more files with numbers. <strong>This is your message file</strong></p>
             </div>
             <div class="article-image">
-                <img src="{% static 'images/fb_down_6.png' %}" alt="how-to-download-facebook-meesenger-picture-6">
+                <img src="{% static 'images/fb_down_6.webp' %}" alt="how-to-download-facebook-meesenger-picture-6">
             </div>
         </article>
 
         <a href="{% url 'index' %}" class="backwards-link">Go back and let's upload your facebook messages and analyze it together</a>
     </div>
-
-    
-</body>
-</html>
+{% endblock %}
