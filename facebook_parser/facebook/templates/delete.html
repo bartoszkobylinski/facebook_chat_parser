@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 <main class="delete-page">
     <div class="delete-page-wrapper">
         <p>Your Facebook chat has been removed from database</p>
@@ -15,6 +8,4 @@
         <button><a href="{% url 'index' %}">yes</a></button>
     </div>
 </main>
-
-</body>
-</html>
+{% endblock %}

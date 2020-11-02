@@ -1,25 +1,16 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/aef6646358.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <script src="{% static 'js/populate.js' %}"></script>
-    <title>Chatty</title>
-</head>
-<body>
-    <nav>
-       <h1>Let's check your facebook chats together</h1> 
-    </nav>
+{% block script%}
+<script defer src="{% static 'js/populate.js' %}"></script>
+{% endblock %}
+{% block content %}
+
     <main class="facebook-main">
         <section>
             <h3>Do you chat on Facebook Messenger? Who doesn't? More than 1 bilion people on Earth do.</h3>
             <div class="wrapper">
                 <div class="chat-container">
-                <ul>
+                <ul class="chat-container-list">
                     <li class="chat-bot">Have you ever thought how is the quality of your chat with your friends or loved ones?</li>
                     <li class="me">YES, many times but I don't know how &#128533</li>
                     <li class="chat-bot">Do you know how many picture have you send in chat?</li>
@@ -42,8 +33,8 @@
                             <input id="upload-button" type="submit" value="upload" onclick="changeText()">
                         </form>
                         <h4>If you <span class="urgent">don't</span> know how to find your facebook file, here is information how you can get it.</h4>
-                        <button class="download-button">
-                            <a href="{% url 'download' %}"><i class="far fa-arrow-alt-circle-right arrow1" aria-hidden="true"></i></a>
+                        <button class="linkbutton-to-downloading_fb" aria-label="go-to-fb-download">
+                            <a href="{% url 'download' %}" aria-label="fb-downloading"><i class="far fa-arrow-alt-circle-right arrow1" aria-hidden="true"></i></a>
                         </button>
                     </div>
                 </div>
@@ -51,7 +42,6 @@
         </section>
     </main>
     <footer>
-        <p>You upload your file on your own responsibility</p>
+        <button class="privacy-button" aria-label="privacy"><a href="{% url 'privacy' %}">Privacy Policy</a></button>
     </footer>
-</body>
-</html>
+{% endblock %}

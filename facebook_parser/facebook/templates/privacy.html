@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="privacy-wrapper">
+<section class="privacy-section">
+    <h3>What data type is collected?</h3>
+    <p>Chatty collect participants information like:</p>
+    <ul class="privacy-list">
+        <li>chat title</li>
+        <li>participants names</li>
+        <li>messages number sendt by participants</li>
+        <li>characters number used in chat by participants</li>
+        <li>words number used in chat by participants</li>
+        <li>gifs number used in chat by participants</li>
+        <li>photos number posted in chat by participants</li>
+        <li>links number posted in chat by participants</li>
+        <li>3 most common words used in chat by participants divided by length of the word</li>
+        <li>most common reaction used in chat by participants</li>
+    </ul>
+    <h3>How the data is collected?</h3>
+    <p>user is uploading his own chat file downloaded from his facebook profile. Chatty analyzing numbers and types of information and provide nice way to display extracted data</p>
+    <h3>How the data is stored?</h3>
+    <p>Chatty is free project where no money is made. Data is stored on a database server and each 15 minutes the database is cleared from not deleted files. User on the end of the proccess has ability and it's recommended to delete/clean database</p>
+    <h3>Whether data is shared with any other parties?</h3>
+    <p>Your data is not shared with any other parties. Chatty is not even saving a file you uploaded. Data extracted from file has no sense except statistical information.</p>
+</section>
+</div>
+
+{% endblock %}

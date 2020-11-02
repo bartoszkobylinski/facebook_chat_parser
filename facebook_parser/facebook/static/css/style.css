@@ -107,11 +107,14 @@ td{
     color: #0c0c0c;
 }
 .delete button:hover,
-.delete-page-wrapper button:hover{
+.delete-page-wrapper button:hover,
+.privacy-button:hover,
+#upload-button:hover{
     background-color:  rgb(140, 211, 242);
 }
 .delete button a:hover,
-.delete-page-wrapper button a:hover{
+.delete-page-wrapper button a:hover,
+.privacy-button a:hover{
     color: #fff;
 }
 .words-option{
@@ -206,12 +209,12 @@ section h3{
 .form-container{
     width: 50%;
 }
-ul{
+.chat-container-list{
     list-style: none;
     margin: 0;
     padding: 0;
 }
-ul li{
+.chat-container-list li{
     display: inline-block;
     padding: 1.25rem;
     clear: both;
@@ -258,7 +261,8 @@ form{
     width: 80%;
 }
 #upload-button,
-#id_file_chat{
+#id_file_chat,
+.privacy-button{
     text-transform: uppercase;
     background-color: #0084ff;
     color: #fff;
@@ -269,6 +273,16 @@ form{
     font-style: normal;
     font-size: 23px;
 }
+.privacy-button{
+    margin-bottom: 1rem;
+}
+.privacy-button a{
+    color: #fff;
+    text-decoration: none;
+}
+.privacy-button:hover{
+
+}
 footer{
     display: flex;
     justify-content: center;
@@ -277,19 +291,19 @@ footer{
 footer p {
     margin-top: 2rem;
 }
-.download-button{
+.linkbutton-to-downloading_fb{
     border: none;
     padding: 0.75rem;
 }
-.download-button{
+.linkbutton-to-downloading_fb{
     color: #0084ff;
     text-decoration: none;
     font-size: 3.5rem;
 }
-.download-button i{
+.linkbutton-to-downloading_fb i{
     color: #0084ff;
 }
-.download-button i::before{
+.linkbutton-to-downloading_fb i::before{
     background: transparent;
 }
 .errorlist li{
@@ -372,4 +386,24 @@ article p{
 .delete-page-wrapper p{
     text-transform: uppercase;
     font-size: 2rem;
+}
+/*-----------privacy-----------------*/
+
+.privacy-wrapper{
+    display: flex;
+    justify-content: center;
+}
+.privacy-section{
+    display: flex;
+    width: 70%;
+    margin-bottom: 4rem;
+}
+
+.privacy-section ul li{
+    display: block;
+    padding: 0.3rem 0rem;
+    margin-top: 0;
+}
+.privacy-list{
+    list-style: circle outside none;
 }

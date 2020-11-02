@@ -1,23 +1,12 @@
+{% extends "base.html" %}
 {% load static %}
 {% load custom_template_filter %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Chatty, place where you can find your Facebook Messenger statistics">
+
+{% block script %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
-    <script src="{% static 'js/populate.js' %}"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Chatty</title>
-</head>
-<body>
-    <nav>
-        <h1>This is your chat statistic</h1>
-    </nav>
-    
+    <script defer src="{% static 'js/populate.js' %}"></script>
+{% endblock %}
+{% block content %}
     <main class="index-main">
         <div class="index-main-wrapper">
             <div class="title-container">
@@ -163,6 +152,7 @@
                     </div>
                 </div>
                 <div class="words-option">
+                    <label for="words-select"></label>
                     <select name="words" id="words-select" onchange="populate()">
                         <option value="4 letters">Most common 4-characters words used by participants</option>
                         <option value="5 letters">Most common 5-characters words used by participants</option>
@@ -185,9 +175,10 @@
                             <tr>
                                 <td rowspan="4"> {{x.0}}</td>    
                                     {% for y in x.1 %}
-                                    <td>{{ y.word|default_if_none:"-" }}</td>
-                                    <td>{{ y.count|default_if_none:"0" }}</td>
-                            
+                                    <tr>
+                                        <td>{{ y.word|default_if_none:"-" }}</td>
+                                        <td>{{ y.count|default_if_none:"0" }}</td>
+                                    </tr>
                                 {% endfor %}
                             </tr>
                             {% endfor %}
@@ -376,5 +367,4 @@
     
     <script src="{% static 'js/charts_display.js' %}"></script>
     
-</body>
-</html>
+{% endblock %}
