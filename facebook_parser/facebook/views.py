@@ -247,3 +247,6 @@ class DeleteFaceView(TemplateView):
 
 class FacebookDownloadView(TemplateView):
     template_name = "how_to_download_facebook.html"
+
+class ChattyPrivacyPolicy(TemplateView):
+    template_name = "privacy.html"

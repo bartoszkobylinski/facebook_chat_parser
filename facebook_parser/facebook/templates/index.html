@@ -4,7 +4,7 @@
 
 {% block script %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
-    <script src="{% static 'js/populate.js' %}"></script>
+    <script defer src="{% static 'js/populate.js' %}"></script>
 {% endblock %}
 {% block content %}
     <main class="index-main">
@@ -152,6 +152,7 @@
                     </div>
                 </div>
                 <div class="words-option">
+                    <label for="words-select"></label>
                     <select name="words" id="words-select" onchange="populate()">
                         <option value="4 letters">Most common 4-characters words used by participants</option>
                         <option value="5 letters">Most common 5-characters words used by participants</option>

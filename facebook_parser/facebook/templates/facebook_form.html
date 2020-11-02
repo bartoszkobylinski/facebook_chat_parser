@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block script%}
-<script src="{% static 'js/populate.js' %}"></script>
+<script defer src="{% static 'js/populate.js' %}"></script>
 {% endblock %}
 {% block content %}
 
@@ -10,7 +10,7 @@
             <h3>Do you chat on Facebook Messenger? Who doesn't? More than 1 bilion people on Earth do.</h3>
             <div class="wrapper">
                 <div class="chat-container">
-                <ul>
+                <ul class="chat-container-list">
                     <li class="chat-bot">Have you ever thought how is the quality of your chat with your friends or loved ones?</li>
                     <li class="me">YES, many times but I don't know how &#128533</li>
                     <li class="chat-bot">Do you know how many picture have you send in chat?</li>
@@ -42,6 +42,6 @@
         </section>
     </main>
     <footer>
-        <p>You upload your file on your own responsibility</p>
+        <button class="privacy-button" aria-label="privacy"><a href="{% url 'privacy' %}">Privacy Policy</a></button>
     </footer>
 {% endblock %}
