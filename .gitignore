@@ -6,6 +6,7 @@ __pycache__/
 facebook_parser/__pycache__/
 facebook/__pycache__ /
 db.sqlite3
+config.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
