@@ -5,7 +5,7 @@ black==20.8b1
 certifi==2020.6.20
 chardet==3.0.4
 click==7.1.2
-Django==3.1
+Django==3.1.10
 flake8==3.8.3
 glob2==0.7
 idna==2.10
